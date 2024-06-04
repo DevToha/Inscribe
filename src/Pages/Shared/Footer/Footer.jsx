@@ -1,15 +1,16 @@
+import { BookOpenIcon } from "@heroicons/react/24/solid";
 
 const Footer = () => {
     return (
         <div>
-            <div className="mt-20 bg-[#1c2733] lg:h-[350px] md:h-[400px] lg:pt-32 pt-20">
+            <div className="mt-20 bg-[#284358] lg:h-[350px] md:h-[400px] lg:pt-32 pt-20">
 
-                <footer className='md:pl-16'>
+                <footer className='md:pl-20'>
                     <footer className=" footer text-base-content md:mb-16">
                         <nav>
                             <div className='flex lg:gap-5 md:gap-5 gap-0'>
-                                <img className='w-[53px] h-[53px] mt-[17px] ml-5' alt="" />
-                                <h6 className="text-4xl font-bold md:ml-0 ml-10 text-white mt-[26px] text12">Career Finder</h6>
+                                <BookOpenIcon className='w-10 h-10 mt-1 text-blue-600' />
+                                <h6 className="text-4xl font-bold md:ml-0 ml-10 text-white  text12">Inscribe</h6>
                             </div>
                         </nav>
                         <nav className="lg:ml-24 ml-7 text-white">

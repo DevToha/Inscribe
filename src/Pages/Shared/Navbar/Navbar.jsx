@@ -4,15 +4,14 @@ import { BookOpenIcon, Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/
 const Navbar = () => {
     let Links = [
         { name: "HOME", link: "/" },
-        { name: "Sign In", link: "/signIn" },
-        { name: "Register", link: "/register" },
+        { name: "SIGN IN", link: "/login" },
+        { name: "REGISTER", link: "/register" },
         // { name: "CONTACT", link: "/" },
     ];
     let [open, setOpen] = useState(false);
-
     return (
-        <div className='shadow-md w-full top-0 left-0 sticky'>
-            <div className='md:flex items-center justify-between bg-white py-4 md:px-10 px-7'>
+        <div className='shadow-md w-full max-w-screen-2xl sticky bg-opacity-70 bg-white text-black z-50'>
+            <div className='md:flex items-center justify-between py-4 md:px-10 px-7'>
                 {/* logo section */}
                 <div className='font-bold text-2xl cursor-pointer flex items-center gap-1'>
                     <BookOpenIcon className='w-7 h-7 text-blue-600' />
@@ -23,15 +22,16 @@ const Navbar = () => {
                     {open ? <XMarkIcon /> : <Bars3BottomRightIcon />}
                 </div>
                 {/* link items */}
-                <ul className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-12' : 'top-[-490px]'}`}>
+                <ul className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-opacity-70  md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-12' : 'top-[-490px]'}`}>
                     {Links.map((link) => (
                         <li key={link.name} className='md:ml-8 md:my-0 my-7 font-semibold'>
-                            <a href={link.link} className='text-gray-800 hover:text-blue-400 duration-500'>{link.name}</a>
+                            <a href={link.link} className='hover:text-blue-400 duration-500'>{link.name}</a>
                         </li>
                     ))}
-                    <button className='btn bg-blue-600 text-white md:ml-8 font-semibold px-3 py-1 rounded duration-500 md:static'>Get Started</button>
+                    <button className='btn bg-blue-600 text-white md:ml-8 font-semibold px-3 py-1 rounded duration-500 md:static'>SIGN IN</button>
+                    <br />
+                    <button className='btn bg-blue-600 text-white md:ml-8 font-semibold px-3 py-1 rounded duration-500 md:static'>REGISTER</button>
                 </ul>
-                {/* button */}
             </div>
         </div>
     );

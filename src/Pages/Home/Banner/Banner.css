@@ -1,0 +1,18 @@
+/* Banner.css */
+
+@keyframes zoomIn {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.banner-container {
+    overflow: hidden;
+}
+
+.banner-image {
+    animation: zoomIn 10s ease-in-out infinite alternate;
+}
