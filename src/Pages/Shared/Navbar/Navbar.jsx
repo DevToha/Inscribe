@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BookOpenIcon, Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
+
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleSignOut = () => {
+        logOut()
+            .then()
+            .catch()
+    }
+
     let Links = [
         { name: "HOME", link: "/" },
-        { name: "SIGN IN", link: "/login" },
-        { name: "REGISTER", link: "/register" },
-        // { name: "CONTACT", link: "/" },
+        { name: "DASHBOARD", link: "/dashboard/cart" },
     ];
+
     let [open, setOpen] = useState(false);
+
     return (
         <div className='shadow-md w-full max-w-screen-2xl sticky bg-opacity-70 bg-white text-black z-50'>
             <div className='md:flex items-center justify-between py-4 md:px-10 px-7'>
@@ -28,9 +39,21 @@ const Navbar = () => {
                             <a href={link.link} className='hover:text-blue-400 duration-500'>{link.name}</a>
                         </li>
                     ))}
-                    <button className='btn bg-blue-600 text-white md:ml-8 font-semibold px-3 py-1 rounded duration-500 md:static'>SIGN IN</button>
-                    <br />
-                    <button className='btn bg-blue-600 text-white md:ml-8 font-semibold px-3 py-1 rounded duration-500 md:static'>REGISTER</button>
+                    <div className="lg:ml-16">
+                        {
+                            user ?
+                                <button onClick={handleSignOut} className="btn btn-primary button40">LOG OUT</button>
+                                :
+                                <div className="">
+                                    <Link to="/login">
+                                        <button className="btn btn-primary button40 lg:mb-0 md:mb-0 mb-5">LOGIN</button>
+                                    </Link>
+                                    <Link to="/register">
+                                        <button className=" btn btn-primary button40 ml-8">REGISTER</button>
+                                    </Link>
+                                </div>
+                        }
+                    </div>
                 </ul>
             </div>
         </div>

@@ -1,0 +1,149 @@
+
+.card16 {
+    width: 380px;
+    height: 264px;
+    color: #000;
+    background-color: #f5f5f5;
+    font-family: "Inter", sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .card16:hover {
+    transform: scale(1.1);
+  }
+  
+  .card16-header img {
+    height: 120px;
+    width: 100%;
+    border-bottom-right-radius: 50%;
+    display: grid;
+    place-items: center;
+  }
+  
+  .card16-details {
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+  }
+  
+  .card16-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 6px;
+    margin-bottom: 8px;
+  }
+  
+  .card16-text {
+    font-size: 12px;
+    margin-bottom: 14px;
+  }
+  
+  .card16-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 10px;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 15px;
+    background: linear-gradient(to left, #5f03f4, #8ba5e9);
+  }
+  
+  .card16-btn:hover {
+    background: linear-gradient(to left, #9f6cf0, #5f03f4);
+  }
+
+  
+.button22 {
+    width: 160px;
+    height: 60px;
+    position: relative;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    outline: none;
+    border: none;
+    background-color: #0c0c0c;
+    transition: all 0.2s ease;
+}
+.button22:hover {
+    transform: scale(0.96);
+}
+.button22:before,
+.button22:after {
+    position: absolute;
+    content: "";
+    width: 150%;
+    left: 50%;
+    height: 100%;
+    transform: translateX(-50%);
+    z-index: -1000;
+    background-repeat: no-repeat;
+}
+.button22:hover:before {
+    top: -70%;
+    background-image: radial-gradient(circle, #0c0c0c 20%, transparent 20%),
+      radial-gradient(circle, transparent 20%, #0c0c0c 20%, transparent 30%),
+      radial-gradient(circle, #0c0c0c 20%, transparent 20%),
+      radial-gradient(circle, #0c0c0c 20%, transparent 20%),
+      radial-gradient(circle, transparent 10%, #0c0c0c 15%, transparent 20%),
+      radial-gradient(circle, #0c0c0c 20%, transparent 20%),
+      radial-gradient(circle, #0c0c0c 20%, transparent 20%),
+      radial-gradient(circle, #0c0c0c 20%, transparent 20%),
+      radial-gradient(circle, #0c0c0c 20%, transparent 20%);
+    background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%,
+      10% 10%, 18% 18%;
+    background-position: 50% 120%;
+    animation: topBubbles 1s ease;
+}
+@keyframes topBubbles {
+    0% {
+      background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%,
+        40% 90%, 55% 90%, 70% 90%;
+    }
+  
+    50% {
+      background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%,
+        50% 50%, 65% 20%, 90% 30%;
+    }
+  
+    100% {
+      background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%,
+        50% 40%, 65% 10%, 90% 20%;
+      background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+    }
+}
+.button22:hover::after {
+    bottom: -70%;
+    background-image: radial-gradient(circle, #0c0c0c 20%, transparent 20%),
+      radial-gradient(circle, #0c0c0c 20%, transparent 20%),
+      radial-gradient(circle, transparent 10%, #0c0c0c 15%, transparent 20%),
+      radial-gradient(circle, #0c0c0c 20%, transparent 20%),
+      radial-gradient(circle, #0c0c0c 20%, transparent 20%),
+      radial-gradient(circle, #0c0c0c 20%, transparent 20%),
+      radial-gradient(circle, #0c0c0c 20%, transparent 20%);
+    background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
+    background-position: 50% 0%;
+    animation: bottomBubbles 1s ease;
+}
+@keyframes bottomBubbles {
+    0% {
+      background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%,
+        70% -10%, 70% 0%;
+    }
+  
+    50% {
+      background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%,
+        105% 0%;
+    }
+  
+    100% {
+      background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
+        110% 10%;
+      background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+    }
+}
+  
