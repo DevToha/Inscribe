@@ -11,6 +11,9 @@ import Cart from "../Pages/Dashboard/Cart/Cart";
 import CreateNote from "../Pages/Dashboard/Create Note/CreateNote";
 import SessionDetail from "../Pages/Home/Study session/SessionDetail";
 import PrivateRoute from "./PrivateRoute";
+import PersonalNote from "../Pages/Dashboard/Personal Note/PersonalNote";
+import StudyMaterial from "../Pages/Dashboard/Study material/StudyMaterial";
+import AllUser from "../Pages/Dashboard/All User/AllUser";
 
 export const router = createBrowserRouter([
     {
@@ -37,7 +40,7 @@ export const router = createBrowserRouter([
     },
     {
         path: "dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 path: 'cart',
@@ -46,6 +49,21 @@ export const router = createBrowserRouter([
             {
                 path: 'CreateNote',
                 element: <CreateNote></CreateNote>
+            },
+            {
+                path: 'personalNote',
+                element: <PersonalNote></PersonalNote>
+            },
+            {
+                path: 'studyMaterial',
+                element: <StudyMaterial></StudyMaterial>
+            },
+
+            // Admin Routes 
+
+            {
+                path: 'allUser',
+                element: <AllUser></AllUser>
             }
         ]
     }

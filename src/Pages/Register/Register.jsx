@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import auth from "../../Firebase/Firebase.config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Register = () => {
     const location = useLocation();
+    const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
 
     useEffect(() => {
         document.title = "Register Page";
@@ -18,11 +21,12 @@ const Register = () => {
 
     const handleRegister = (e) => {
         e.preventDefault();
+        const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
         const role = e.target.role.value;
 
-        console.log(email, password, role);
+        console.log(email, password, role, name);
 
         // Password setting
         if (password.length < 6) {
@@ -46,11 +50,28 @@ const Register = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then(result => {
                 console.log(result.user);
-                Swal.fire({
-                    title: "Your Account Created Successfully",
-                    icon: "success"
-                });
+
+                // create user entry in database 
+
+                const userInfo = {
+                    name: name,
+                    email: email,
+                    role: role
+                }
+
+                axiosPublic.post('/user', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log('user added database')
+                            Swal.fire({
+                                title: "Your Account Created Successfully",
+                                icon: "success"
+                            });
+                            navigate(location?.state ? location.state : '/');
+                        }
+                    })
             })
+
             .catch(error => {
                 console.log(error);
                 setCatchError(error.message);

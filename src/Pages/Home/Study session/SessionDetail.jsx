@@ -16,7 +16,7 @@ const SessionDetail = () => {
     const [review, setReview] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/review')
+        fetch('https://assignment-12-server-silk-phi.vercel.app/review')
             .then(res => res.json())
             .then(data => setReview(data));
     }, []);
@@ -24,7 +24,7 @@ const SessionDetail = () => {
     const { data: studySession, isLoading, error } = useQuery({
         queryKey: ['studySession', _id],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/studySession/${_id}`);
+            const res = await fetch(`https://assignment-12-server-silk-phi.vercel.app/studySession/${_id}`);
             if (!res.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -50,7 +50,7 @@ const SessionDetail = () => {
         const newReview = { name, email, date, rating, review };
 
         // send data to the server
-        const res = await fetch('http://localhost:5000/review', {
+        const res = await fetch('https://assignment-12-server-silk-phi.vercel.app/review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

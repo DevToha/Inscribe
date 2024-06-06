@@ -9,7 +9,7 @@ const StudySession = () => {
     const { data: studySession, isLoading, error } = useQuery({
         queryKey: ['studySession'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/studySession');
+            const res = await fetch('https://assignment-12-server-silk-phi.vercel.app/studySession');
             if (!res.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -17,7 +17,18 @@ const StudySession = () => {
         }
     });
 
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading)
+        return
+    <p>
+        <div className="loader20">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </p>;
+    
     if (error) return <p>Error: {error.message}</p>;
     if (!studySession) return <p>No data available</p>;
 
@@ -36,7 +47,7 @@ const StudySession = () => {
                         <div className="card16 mb-14 p-10">
                             <p>name: {session.sessionTitle}</p>
                             <p>Description: {session.sessionDescription}</p>
-                            
+
                             <Link to={`/SessionDetail/${session._id}`}><button className="btn btn-success my-8">Detail</button></Link>
                         </div>
                     </div>
