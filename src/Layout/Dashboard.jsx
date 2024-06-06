@@ -8,11 +8,12 @@ import { SiMaterialformkdocs } from "react-icons/si";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { MdClass } from "react-icons/md";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
 
-    const isAdmin = true
+    const [isAdmin] = useAdmin();
 
     return (
         <div className="px-20">

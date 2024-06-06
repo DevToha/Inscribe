@@ -1,9 +1,77 @@
-
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { FaUsers } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const AllUser = () => {
+    const axiosSecure = useAxiosSecure();
+    const [users, setUsers] = useState([]);
+
+    const { refetch } = useQuery({
+        queryKey: ['user'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/user');
+            setUsers(res.data);
+            return res.data;
+        }
+    });
+
+    const handleMakeAdmin = async (user) => {
+        try {
+            const res = await axiosSecure.patch(`/user/admin/${user._id}`);
+            if (res.data.modifiedCount > 0) {
+                Swal.fire({
+                    position: 'top-end',
+                    title: "Good job",
+                    text: `${user.name} is an admin`,
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+                // Update the user's role in the local state
+                setUsers(prevUsers => prevUsers.map(u => 
+                    u._id === user._id ? { ...u, role: 'admin' } : u
+                ));
+            }
+        } catch (error) {
+            console.error("Error making user admin:", error);
+        }
+    }
+
     return (
         <div>
-            
+            Total user: {users.length}
+
+            <div className="overflow-x-auto">
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th className="font-bold text-base text-black">Name</th>
+                            <th className="font-bold text-base text-black">Email</th>
+                            <th className="font-bold text-base text-black">Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {users.map((user, index) => (
+                            <tr key={user._id} className="hover:bg-[#aee1ed] hover:text-black ">
+                                <th>{index + 1}</th>
+                                <td>{user.name}</td>
+                                <td>{user.email}</td>
+                                <td className="my-3 ">
+                                    {user.role === 'admin' ? 'Admin' : (
+                                        <button onClick={() => handleMakeAdmin(user)} className="btn hover:bg-blue-500">
+                                            <FaUsers className="text-lg" />
+                                        </button>
+                                    )}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
