@@ -91,8 +91,8 @@ const Register = () => {
                         <select className="select select-bordered mb-4 lg:w-[352px] w-[290px] py-2 px-4 border-2 border-gray-300 rounded-md" name="role" required>
                             <option value="" disabled selected>Select Your Role</option>
                             <option value="Student">Student</option>
-                            <option value="Tutor">Tutor</option>
-                            <option value="Admin">Admin</option>
+                            <option value="tutor">Tutor</option>
+                            <option value="admin">Admin</option>
                         </select>
                         <br />
                         <div className="relative">

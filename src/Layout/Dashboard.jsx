@@ -9,11 +9,13 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { MdClass } from "react-icons/md";
 import useAdmin from "../Hooks/useAdmin";
+import useTutor from "../Hooks/useTutor";
+
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
-
     const [isAdmin] = useAdmin();
+    const [isTutor] = useTutor();
 
     return (
         <div className="px-20">
@@ -33,38 +35,59 @@ const Dashboard = () => {
                             <li>Loading user info...</li>
                         )}
 
-
                         {
-                            isAdmin ? <>
+                            isAdmin ? (
 
-                                <li className="mt-8">
-                                    <NavLink to="/"><FaHome /> Home</NavLink>
-                                </li>
-
-                                <li className="my-8">
-                                    <NavLink to="/dashboard/allUser"><FaUsers /> All User</NavLink>
-                                </li>
-
-                                <li className="">
-                                    <NavLink to="/dashboard/userHome"><MdClass /> All Study Session</NavLink>
-                                </li>
-                                <li className="my-8">
-                                    <NavLink to="/dashboard/cart"><SiMaterialformkdocs /> All Study Materials</NavLink>
-                                </li>
-
-                            </>
-                                :
+                                // admin route 
                                 <>
-
                                     <li className="mt-8">
                                         <NavLink to="/"><FaHome /> Home</NavLink>
                                     </li>
+                                    <li className="my-8">
+                                        <NavLink to="/dashboard/allUser"><FaUsers /> All User</NavLink>
+                                    </li>
+                                    <li className="">
+                                        <NavLink to="/dashboard/allStudySession"><MdClass /> All Study Session</NavLink>
+                                    </li>
+                                    <li className="my-8">
+                                        <NavLink to="/dashboard/allMaterials"><SiMaterialformkdocs /> All Study Materials</NavLink>
+                                    </li>
+                                </>
+                            ) : isTutor ? (
 
+                                // tutor route 
+                                <>
+                                    <li className="mt-8">
+                                        <NavLink to="/"><FaHome /> Home</NavLink>
+                                    </li>
+                                    <li className="my-8">
+                                        <NavLink to="/dashboard/createSession"><FaRegUser /> Create study session</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/dashboard/manageSessions"><MdClass /> View all study sessions</NavLink>
+                                    </li>
+                                    <li className="my-8">
+                                        <NavLink to="/dashboard/viewStudentProgress"><FaUsers /> Upload materials</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/dashboard/uploadMaterials"><SiMaterialformkdocs /> View all materials</NavLink>
+                                    </li>
+                                    <li className="my-8">
+                                        <NavLink to="/dashboard/allNotes"><SiMaterialformkdocs /> View all notes</NavLink>
+                                    </li>
+                                </>
+                            ) : (
+
+                                // student route 
+                                <>
+                                    <li className="mt-8">
+                                        <NavLink to="/"><FaHome /> Home</NavLink>
+                                    </li>
                                     <li className="my-8">
                                         <NavLink to="/dashboard/userHome"><FaRegUser /> User Home</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/dashboard/cart"><RiBookMarkedFill /> View booked session</NavLink>
+                                        <NavLink to="/dashboard/bookedSession"><RiBookMarkedFill /> View booked session</NavLink>
                                     </li>
                                     <li className="my-8">
                                         <NavLink to="/dashboard/CreateNote"><IoCreateSharp /> Create note</NavLink>
@@ -76,9 +99,8 @@ const Dashboard = () => {
                                         <NavLink to="/dashboard/studyMaterial"><SiMaterialformkdocs /> Study materials by tutor</NavLink>
                                     </li>
                                 </>
+                            )
                         }
-
-
                     </ul>
                 </div>
                 {/* dashboard content */}

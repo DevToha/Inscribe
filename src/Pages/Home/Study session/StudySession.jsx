@@ -2,38 +2,36 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import './session.css';
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const StudySession = () => {
-    const [showAll, setShowAll] = useState(false); // State to track if "See All Session" is clicked
+    const [showAll, setShowAll] = useState(false);
 
-    const { data: studySession, isLoading, error } = useQuery({
+    const axiosPublic = useAxiosPublic();
+    const { data: studySession = [], isLoading, isError, error } = useQuery({
         queryKey: ['studySession'],
         queryFn: async () => {
-            const res = await fetch('https://assignment-12-server-silk-phi.vercel.app/studySession');
-            if (!res.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return res.json();
-        }
+            const res = await axiosPublic.get('/studySession');
+            return res.data;
+        },
     });
 
-    if (isLoading)
-        return
-    <p>
-        <div className="loader20">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </p>;
-    
-    if (error) return <p>Error: {error.message}</p>;
-    if (!studySession) return <p>No data available</p>;
+    if (isLoading) {
+        return (
+            <p>
+                <span className="loading loading-bars loading-lg"></span>
+            </p>
+        );
+    }
 
-    // Determine the sessions to display based on the showAll state
-    const sessionsToShow = showAll ? studySession : studySession.slice(0, 6);
+    if (isError) {
+        return (
+            <p>Error: {error.message}</p>
+        );
+    }
+
+    // Ensure studySession is an array before attempting to slice it
+    const sessionsToShow = Array.isArray(studySession) ? (showAll ? studySession : studySession.slice(0, 6)) : [];
 
     return (
         <div>
@@ -44,12 +42,12 @@ const StudySession = () => {
             <div className="lg:grid lg:grid-cols-3 text-center ml-24">
                 {sessionsToShow.map((session) => (
                     <div key={session._id}>
-                        <div className="card16 mb-14 p-10">
+                        <div className="card25 mb-14 p-10">
                             <p>name: {session.sessionTitle}</p>
                             <p>Description: {session.sessionDescription}</p>
 
-                            <Link to={`/SessionDetail/${session._id}`}><button className="btn btn-success my-8">Detail</button></Link>
-                        </div>
+                            <Link to={`/SessionDetail/${session._id}`}><button className="card25-btn my-8">Detail</button></Link>
+                        </div>  
                     </div>
                 ))}
             </div>

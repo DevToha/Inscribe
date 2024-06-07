@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import { FaUsers } from "react-icons/fa";
+import { FaUsers, FaChalkboardTeacher } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const AllUser = () => {
@@ -30,15 +30,34 @@ const AllUser = () => {
                     timer: 1500
                 });
 
-                // Update the user's role in the local state
-                setUsers(prevUsers => prevUsers.map(u => 
-                    u._id === user._id ? { ...u, role: 'admin' } : u
-                ));
+                // Refetch the users after making someone an admin
+                refetch();
             }
         } catch (error) {
             console.error("Error making user admin:", error);
         }
-    }
+    };
+
+    const handleMakeTutor = async (user) => {
+        try {
+            const res = await axiosSecure.patch(`/user/tutor/${user._id}`);
+            if (res.data.modifiedCount > 0) {
+                Swal.fire({
+                    position: 'top-end',
+                    title: "Good job",
+                    text: `${user.name} is now a tutor`,
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+                // Refetch the users after making someone a tutor
+                refetch();
+            }
+        } catch (error) {
+            console.error("Error making user tutor:", error);
+        }
+    };
 
     return (
         <div>
@@ -52,18 +71,27 @@ const AllUser = () => {
                             <th className="font-bold text-base text-black">Name</th>
                             <th className="font-bold text-base text-black">Email</th>
                             <th className="font-bold text-base text-black">Role</th>
+                            <th className="font-bold text-base text-black">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {users.map((user, index) => (
-                            <tr key={user._id} className="hover:bg-[#aee1ed] hover:text-black ">
+                            <tr key={user._id} className="hover:bg-[#aee1ed] hover:text-black">
                                 <th>{index + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td className="my-3 ">
-                                    {user.role === 'admin' ? 'Admin' : (
+                                <td className="my-3">
+                                    {user.role}
+                                </td>
+                                <td>
+                                    {user.role !== 'admin' && (
                                         <button onClick={() => handleMakeAdmin(user)} className="btn hover:bg-blue-500">
                                             <FaUsers className="text-lg" />
+                                        </button>
+                                    )}
+                                    {user.role !== 'tutor' && (
+                                        <button onClick={() => handleMakeTutor(user)} className="btn hover:bg-green-500 ml-2">
+                                            <FaChalkboardTeacher className="text-lg" />
                                         </button>
                                     )}
                                 </td>
