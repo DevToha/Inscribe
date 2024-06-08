@@ -1,71 +1,69 @@
-.card16 {
+
+.card15 {
   width: 380px;
   height: 264px;
-  color: #000;
+  padding: 4px;
+  padding-top: 30px;
+  border-radius: 6px;
+  text-align: center;
   background-color: #f5f5f5;
   font-family: "Inter", sans-serif;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  transition: all 0.2s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 4px;
+  transition: 0.6s ease-in-out;
 }
 
-.card16:hover {
-  transform: scale(1.1);
+.card15:hover {
+  box-shadow: 0 18px 35px rgba(50, 50, 90, 0.1), 0 8px 15px rgba(0, 0, 0, 0.07);
+  transform: translateY(-1px);
 }
 
-.card16-header img {
-  height: 120px;
+.card15 img {
   width: 100%;
-  border-bottom-right-radius: 50%;
-  display: grid;
-  place-items: center;
+  height: 120px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
-.card16-details {
-  display: flex;
-  flex-direction: column;
-  padding: 4px;
-}
-
-.card16-title {
+.card15 h1 {
+  color: #000;
   font-size: 22px;
   font-weight: bold;
-  margin-top: 6px;
-  margin-bottom: 8px;
 }
 
-.card16-text {
-  font-size: 12px;
-  margin-bottom: 14px;
+.card15 p {
+  color: black;
+  font-size: 13px;
+  margin-bottom: 21px;
 }
 
-.card16-btn {
-  border: none;
-  border-radius: 10px;
-  padding: 10px 10px;
-  color: #fff;
+.card15-btn {
   cursor: pointer;
-  margin-bottom: 15px;
-  background: linear-gradient(to left, #5f03f4, #8ba5e9);
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: white;
+  font-size: 14px;
+  background-color: #2e1e8a;
+  text-decoration: none;
 }
 
-.card16-btn:hover {
-  background: linear-gradient(to left, #9f6cf0, #5f03f4);
+.card15-btn:hover {
+  background-color: #4532af;
 }
 
 
 .button22 {
-  width: 160px;
-  height: 60px;
+  width: 140px;
+  height: 50px;
   position: relative;
   border-radius: 10px;
   color: #fff;
   cursor: pointer;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
   text-align: center;
   outline: none;
   border: none;
-  background-color: #0c0c0c;
+  background-color: rgba(19, 188, 207, 0.94);
   transition: all 0.2s ease;
 }
 
@@ -87,15 +85,15 @@
 
 .button22:hover:before {
   top: -70%;
-  background-image: radial-gradient(circle, #0c0c0c 20%, transparent 20%),
-    radial-gradient(circle, transparent 20%, #0c0c0c 20%, transparent 30%),
-    radial-gradient(circle, #0c0c0c 20%, transparent 20%),
-    radial-gradient(circle, #0c0c0c 20%, transparent 20%),
-    radial-gradient(circle, transparent 10%, #0c0c0c 15%, transparent 20%),
-    radial-gradient(circle, #0c0c0c 20%, transparent 20%),
-    radial-gradient(circle, #0c0c0c 20%, transparent 20%),
-    radial-gradient(circle, #0c0c0c 20%, transparent 20%),
-    radial-gradient(circle, #0c0c0c 20%, transparent 20%);
+  background-image: radial-gradient(circle, rgb(32, 87, 227) 20%, transparent 20%),
+    radial-gradient(circle, transparent 20%, rgb(32, 87, 227) 20%, transparent 30%),
+    radial-gradient(circle, rgb(32, 87, 227) 20%, transparent 20%),
+    radial-gradient(circle, rgb(32, 87, 227) 20%, transparent 20%),
+    radial-gradient(circle, transparent 10%, rgb(32, 87, 227) 15%, transparent 20%),
+    radial-gradient(circle, rgb(32, 87, 227) 20%, transparent 20%),
+    radial-gradient(circle, rgb(32, 87, 227) 20%, transparent 20%),
+    radial-gradient(circle, rgb(32, 87, 227) 20%, transparent 20%),
+    radial-gradient(circle, rgb(32, 87, 227) 20%, transparent 20%);
   background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%,
     10% 10%, 18% 18%;
   background-position: 50% 120%;
@@ -122,13 +120,13 @@
 
 .button22:hover::after {
   bottom: -70%;
-  background-image: radial-gradient(circle, #0c0c0c 20%, transparent 20%),
-    radial-gradient(circle, #0c0c0c 20%, transparent 20%),
-    radial-gradient(circle, transparent 10%, #0c0c0c 15%, transparent 20%),
-    radial-gradient(circle, #0c0c0c 20%, transparent 20%),
-    radial-gradient(circle, #0c0c0c 20%, transparent 20%),
-    radial-gradient(circle, #0c0c0c 20%, transparent 20%),
-    radial-gradient(circle, #0c0c0c 20%, transparent 20%);
+  background-image: radial-gradient(circle, rgb(32, 87, 227) 20%, transparent 20%),
+    radial-gradient(circle, rgb(32, 87, 227) 20%, transparent 20%),
+    radial-gradient(circle, transparent 10%, rgb(32, 87, 227) 15%, transparent 20%),
+    radial-gradient(circle, rgb(32, 87, 227) 20%, transparent 20%),
+    radial-gradient(circle, rgb(32, 87, 227) 20%, transparent 20%),
+    radial-gradient(circle, rgb(32, 87, 227) 20%, transparent 20%),
+    radial-gradient(circle, rgb(32, 87, 227) 20%, transparent 20%);
   background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
   background-position: 50% 0%;
   animation: bottomBubbles 1s ease;
@@ -199,13 +197,13 @@
 
 .card25 {
   width: 380px;
-  height: auto;
+  height: 400px;
   color: #000;
   text-align: center;
   background-color: #f5f5f5;
   border-radius: 6px;
   font-family: "Inter", sans-serif;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 3px;
 }
 
 .card25-details {

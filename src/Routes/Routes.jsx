@@ -18,6 +18,8 @@ import AllMaterials from "../Pages/Dashboard/All Materials/AllMaterials";
 import AdminRoute from "./AdminRoute";
 import CreateSession from "../Pages/Dashboard/Create study session/CreateSession";
 import TutorRoute from "./TutorRoute";
+import Payment from "../Pages/Dashboard/Payment/Payment";
+import BookedSession from "../Pages/Dashboard/Booked Session/BookedSession";
 
 export const router = createBrowserRouter([
     {
@@ -39,7 +41,12 @@ export const router = createBrowserRouter([
             {
                 path: '/SessionDetail/:_id',
                 element: <PrivateRoute><SessionDetail></SessionDetail></PrivateRoute>
+            },
+            {
+                path: '/payment',
+                element: <Payment></Payment>
             }
+
         ]
     },
     {
@@ -51,6 +58,10 @@ export const router = createBrowserRouter([
             {
                 path: 'cart',
                 element: <Cart></Cart>
+            },
+            {
+                path: 'bookedSession',
+                element: <BookedSession></BookedSession>
             },
             {
                 path: 'CreateNote',

@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import './session.css';
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { useContext } from "react";
@@ -8,12 +8,16 @@ import '@smastrom/react-rating/style.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import useAdmin from "../../../Hooks/useAdmin";
+import useTutor from "../../../Hooks/useTutor";
 
 const SessionDetail = () => {
     const { user } = useContext(AuthContext);
     const { _id } = useParams();
     const queryClient = useQueryClient();
     const axiosPublic = useAxiosPublic();
+    const [isAdmin] = useAdmin();
+    const [isTutor] = useTutor();
 
     const { data: studySession = {}, isLoading: isLoadingSession } = useQuery({
         queryKey: ['studySession', _id],
@@ -69,13 +73,24 @@ const SessionDetail = () => {
         }
     };
 
+    const isRegistrationClosed = new Date(studySession.registrationEndDate) < new Date();
+    const isButtonDisabled = isRegistrationClosed || isAdmin || isTutor;
+
     return (
         <div>
             <div className="flex justify-evenly">
                 <div>
-                    <div className="card16 mt-28">
+                    <div className="card25 mt-28 pt-10">
                         <h1>{studySession.sessionTitle}</h1>
-                        <p>{studySession.sessionDescription}</p>
+                        <p className="my-5">{studySession.sessionDescription}</p>
+                        <p>Registration Fee : {studySession.registrationFee}</p>
+                        <p className="mt-5">Registration End Date : {studySession.registrationEndDate}</p>
+
+                        <Link to="/payment" state={{ BookedSession: studySession }}>
+                            <button className="card15-btn btn my-5" disabled={isButtonDisabled}>
+                                {isRegistrationClosed ? 'Registration Closed' : (isAdmin || isTutor) ? 'Only Student Can Register' : 'Book Now'}
+                            </button>
+                        </Link>
                     </div>
                 </div>
 
@@ -91,7 +106,7 @@ const SessionDetail = () => {
                                         <div>
                                             {/* name  */}
                                             <h4 className="mb-2 text-base font-bold text-gray-600">Your Name</h4>
-                                            <input className="mb-8 lg:w-[200px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="name" defaultValue={user.displayName} placeholder="Your Name" name="name" id="" required readOnly/>
+                                            <input className="mb-8 lg:w-[200px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="name" defaultValue={user.displayName} placeholder="Your Name" name="name" id="" required readOnly />
 
                                             {/* date  */}
                                             <h4 className="mb-2 text-base font-bold text-gray-600">Date</h4>
@@ -100,7 +115,7 @@ const SessionDetail = () => {
                                         <div>
                                             {/* email  */}
                                             <h4 className="mb-2 text-base font-bold text-gray-600">Your Email</h4>
-                                            <input className="mb-8 lg:w-[200px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="text" defaultValue={user.email} placeholder="Your Email" name="email" id="" required readOnly/>
+                                            <input className="mb-8 lg:w-[200px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="text" defaultValue={user.email} placeholder="Your Email" name="email" id="" required readOnly />
 
                                             {/* Rating  */}
                                             <h4 className="mb-2 text-base font-bold text-gray-600">Your Rating</h4>
@@ -129,7 +144,7 @@ const SessionDetail = () => {
             <div className="mt-14 grid grid-cols-3">
                 {reviews.map((review) => (
                     <div key={review._id}>
-                        <div className="card16 mb-10 ml-16">
+                        <div className="card25 mb-10 ml-16">
                             <Rating
                                 style={{ maxWidth: 180 }}
                                 value={review.rating}

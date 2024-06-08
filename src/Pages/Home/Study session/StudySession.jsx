@@ -36,18 +36,19 @@ const StudySession = () => {
     return (
         <div>
             <h1 className="text-4xl text-center font-bold my-10">
-                Study session section: {studySession.length}
+                All Study Session
             </h1>
 
             <div className="lg:grid lg:grid-cols-3 text-center ml-24">
                 {sessionsToShow.map((session) => (
                     <div key={session._id}>
-                        <div className="card25 mb-14 p-10">
+                        <div className="card15 mb-14 p-10">
                             <p>name: {session.sessionTitle}</p>
                             <p>Description: {session.sessionDescription}</p>
+                            <p>End date :{session.registrationEndDate}</p>
 
                             <Link to={`/SessionDetail/${session._id}`}><button className="card25-btn my-8">Detail</button></Link>
-                        </div>  
+                        </div>
                     </div>
                 ))}
             </div>
