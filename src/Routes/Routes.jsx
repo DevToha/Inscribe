@@ -5,7 +5,6 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
-// import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../Pages/Dashboard/Cart/Cart";
 import CreateNote from "../Pages/Dashboard/Create Note/CreateNote";
@@ -53,18 +52,12 @@ export const router = createBrowserRouter([
         path: "dashboard",
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
-
-            // student routes 
             {
                 path: 'cart',
                 element: <Cart></Cart>
             },
             {
-                path: 'bookedSession',
-                element: <BookedSession></BookedSession>
-            },
-            {
-                path: 'CreateNote',
+                path: 'createNote',
                 element: <CreateNote></CreateNote>
             },
             {
@@ -75,24 +68,22 @@ export const router = createBrowserRouter([
                 path: 'studyMaterial',
                 element: <StudyMaterial></StudyMaterial>
             },
-
-            // Tutor Routes 
-
+            {
+                path: 'allMaterials',
+                element: <AllMaterials></AllMaterials>
+            },
+            {
+                path: 'allUsers',
+                element: <AdminRoute><AllUser></AllUser></AdminRoute>
+            },
             {
                 path: 'createSession',
                 element: <TutorRoute><CreateSession></CreateSession></TutorRoute>
             },
-
-            // Admin Routes 
-
             {
-                path: 'allUser',
-                element: <AdminRoute><AllUser></AllUser></AdminRoute>
+                path: 'bookedSessions',
+                element: <BookedSession></BookedSession>
             },
-            {
-                path: 'allMaterials',
-                element: <AdminRoute><AllMaterials></AllMaterials></AdminRoute>
-            }
         ]
     }
 ]);

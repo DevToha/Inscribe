@@ -16,14 +16,10 @@ const CheckOutForm = ({ BookedSession }) => {
     const axiosSecure = useAxiosSecure();
     const totalRegistrationPrice = BookedSession.registrationFee;
 
-    console.log('BookedSession:', BookedSession); // Verify the data
-    console.log('Total Registration Price:', totalRegistrationPrice); // Verify the fee
-
     useEffect(() => {
         if (totalRegistrationPrice > 0) {
             axiosSecure.post('/create-payment-intent', { price: totalRegistrationPrice })
                 .then(res => {
-                    console.log(res.data.clientSecret);
                     setClientSecret(res.data.clientSecret);
                 })
         }
@@ -42,20 +38,17 @@ const CheckOutForm = ({ BookedSession }) => {
             return;
         }
 
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
+        const { error } = await stripe.createPaymentMethod({
             type: 'card',
             card
         });
 
         if (error) {
-            console.log('payment error', error);
             setError(error.message);
         } else {
-            console.log('payment method', paymentMethod);
             setError('');
         }
 
-        // Uncomment the following lines to handle the payment confirmation and database update
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
@@ -67,16 +60,36 @@ const CheckOutForm = ({ BookedSession }) => {
         });
 
         if (confirmError) {
-            console.log('confirm error');
+            setError(confirmError.message);
         } else {
-            console.log('payment intent', paymentIntent);
-        }
-        if (paymentIntent.status === 'succeeded') {
-            toast.success("Payment Successful");
-            console.log('transaction id', paymentIntent.id);
             setTransactionId(paymentIntent.id);
-        }
+            if (paymentIntent.status === 'succeeded') {
+                toast.success("Payment Successful");
 
+                // Save the booked session to the backend
+                const bookedSessionData = {
+                    sessionId: BookedSession._id,
+                    userId: user._id,
+                    userName: user.displayName,
+                    userEmail: user.email,
+                    transactionId: paymentIntent.id,
+                    registrationFee: BookedSession.registrationFee,
+                    sessionTitle: BookedSession.sessionTitle,
+                    sessionDescription: BookedSession.sessionDescription,
+                    registrationDate: new Date(),
+                };
+
+                axiosSecure.post('/bookedSession', bookedSessionData)
+                    .then(response => {
+                        if (response.data.insertedId) {
+                            console.log('Session booked successfully');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error booking session:', error);
+                    });
+            }
+        }
     };
 
     return (
@@ -102,21 +115,18 @@ const CheckOutForm = ({ BookedSession }) => {
                 Pay
             </button>
             <p className="text-red-600">{error}</p>
-            {transactionId && <p className="text-green-600"> Your transaction id: {transactionId}</p>}
+            {transactionId && <p className="text-green-600">Your transaction id: {transactionId}</p>}
         </form>
     );
 };
 
 CheckOutForm.propTypes = {
     BookedSession: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
         registrationFee: PropTypes.number.isRequired,
+        sessionTitle: PropTypes.string.isRequired,
+        sessionDescription: PropTypes.string.isRequired,
     }).isRequired,
-};
-
-CheckOutForm.defaultProps = {
-    BookedSession: {
-        registrationFee: 0,
-    },
 };
 
 export default CheckOutForm;

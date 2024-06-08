@@ -87,7 +87,7 @@ const Dashboard = () => {
                                         <NavLink to="/dashboard/userHome"><FaRegUser /> User Home</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/dashboard/bookedSession"><RiBookMarkedFill /> View booked session</NavLink>
+                                        <NavLink to="/dashboard/bookedSessions"><RiBookMarkedFill /> View booked session</NavLink>
                                     </li>
                                     <li className="my-8">
                                         <NavLink to="/dashboard/CreateNote"><IoCreateSharp /> Create note</NavLink>

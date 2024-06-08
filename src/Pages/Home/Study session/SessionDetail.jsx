@@ -1,10 +1,10 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Link, useParams } from "react-router-dom";
+import {  useParams, useNavigate } from "react-router-dom";
 import './session.css';
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { useContext } from "react";
 import { Rating } from "@smastrom/react-rating";
-import '@smastrom/react-rating/style.css'
+import '@smastrom/react-rating/style.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
@@ -18,6 +18,7 @@ const SessionDetail = () => {
     const axiosPublic = useAxiosPublic();
     const [isAdmin] = useAdmin();
     const [isTutor] = useTutor();
+    const navigate = useNavigate();
 
     const { data: studySession = {}, isLoading: isLoadingSession } = useQuery({
         queryKey: ['studySession', _id],
@@ -55,7 +56,6 @@ const SessionDetail = () => {
 
         const newReview = { name, email, date, rating, review: reviewText };
 
-        // send data to the server
         const res = await fetch('https://assignment-12-server-silk-phi.vercel.app/review', {
             method: 'POST',
             headers: {
@@ -68,8 +68,36 @@ const SessionDetail = () => {
         if (data.insertedId) {
             toast.success("Review added successfully (Please, scroll down to see your review)");
 
-            // Update the query to get the updated data
             queryClient.invalidateQueries(['reviews', _id]);
+        }
+    };
+
+    const handleBookNow = () => {
+        if (studySession.registrationFee > 0) {
+            navigate('/payment', { state: { BookedSession: studySession } });
+        } else {
+            // Simulate successful booking without payment
+            const bookedSessionData = {
+                sessionId: studySession._id,
+                userId: user._id,
+                userName: user.displayName,
+                userEmail: user.email,
+                registrationFee: 0,
+                sessionTitle: studySession.sessionTitle,
+                sessionDescription: studySession.sessionDescription,
+                registrationDate: new Date(),
+            };
+
+            axiosPublic.post('/bookedSession', bookedSessionData)
+                .then(response => {
+                    if (response.data.insertedId) {
+                        toast.success("Session booked successfully without payment");
+                        navigate('/dashboard/bookedSessions');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error booking session:', error);
+                });
         }
     };
 
@@ -86,15 +114,12 @@ const SessionDetail = () => {
                         <p>Registration Fee : {studySession.registrationFee}</p>
                         <p className="mt-5">Registration End Date : {studySession.registrationEndDate}</p>
 
-                        <Link to="/payment" state={{ BookedSession: studySession }}>
-                            <button className="card15-btn btn my-5" disabled={isButtonDisabled}>
-                                {isRegistrationClosed ? 'Registration Closed' : (isAdmin || isTutor) ? 'Only Student Can Register' : 'Book Now'}
-                            </button>
-                        </Link>
+                        <button onClick={handleBookNow} className="card15-btn btn my-5" disabled={isButtonDisabled}>
+                            {isRegistrationClosed ? 'Registration Closed' : (isAdmin || isTutor) ? 'Only Student Can Register' : 'Book Now'}
+                        </button>
                     </div>
                 </div>
 
-                {/* give review  */}
                 <div>
                     <ToastContainer />
                     <div className="bg-gray-300 shadow8 pt-5 pb-8 md:ml-0 mt-10 rounded-3xl lg:w-[550px] pl-[40px]">
@@ -104,29 +129,21 @@ const SessionDetail = () => {
                                 <div>
                                     <div className="lg:flex md:flex gap-16">
                                         <div>
-                                            {/* name  */}
                                             <h4 className="mb-2 text-base font-bold text-gray-600">Your Name</h4>
                                             <input className="mb-8 lg:w-[200px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="name" defaultValue={user.displayName} placeholder="Your Name" name="name" id="" required readOnly />
-
-                                            {/* date  */}
                                             <h4 className="mb-2 text-base font-bold text-gray-600">Date</h4>
                                             <input className="mb-8 lg:w-[200px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="text" placeholder="Date" name="date" id="" required />
                                         </div>
                                         <div>
-                                            {/* email  */}
                                             <h4 className="mb-2 text-base font-bold text-gray-600">Your Email</h4>
                                             <input className="mb-8 lg:w-[200px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="text" defaultValue={user.email} placeholder="Your Email" name="email" id="" required readOnly />
-
-                                            {/* Rating  */}
                                             <h4 className="mb-2 text-base font-bold text-gray-600">Your Rating</h4>
                                             <input className="mb-8 lg:w-[200px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="number" placeholder="Give Your Rating" name="rating" id="" required />
                                         </div>
                                     </div>
                                     <div>
-                                        {/* Review  */}
                                         <h4 className="mb-2 text-base font-bold text-gray-600">Your review</h4>
                                         <textarea className="textarea textarea-bordered mb-8 lg:w-[470px] h-[200px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="text" placeholder="Write your review" name="review" id="" required></textarea>
-
                                         <input className=" btn hover:bg-orange-800 cursor-pointer ml-10 lg:ml-0 md:ml-0 mt-1 lg:w-[470px] md:w-[580px] py-2 px-4 border-2 rounded-md border-gray-300 bg-blue-500 text-white text-lg font-medium" type="submit" value="ADD NOW" />
                                     </div>
                                 </div>
@@ -136,7 +153,6 @@ const SessionDetail = () => {
                 </div>
             </div>
 
-            {/*show review  */}
             <div className="bg-slate-700 h-20 w-auto mt-10">
                 <h1 className="text-white text-lg font-semibold text-center py-6">Here is all review given by student about this session</h1>
             </div>
