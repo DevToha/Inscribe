@@ -15,7 +15,7 @@ const Navbar = () => {
 
     let Links = [
         { name: "HOME", link: "/" },
-        { name: "DASHBOARD", link: "/dashboard/cart" },
+        { name: "DASHBOARD", link: "/dashboard" },
     ];
 
     let [open, setOpen] = useState(false);

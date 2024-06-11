@@ -79,7 +79,7 @@ const CreateSession = () => {
                                 <input className="mb-10 lg:w-[270px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="text" placeholder="Registration end date" name="registrationEndDate" required />
                                 <input className="mb-10 lg:w-[270px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="photoURL" placeholder="Class start date" name="classStartTime" required />
                                 <input className="mb-10 lg:w-[270px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="text" placeholder="Class end date" name="classEndDate" required />
-                                <input className="mb-10 lg:w-[270px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="email" placeholder="Session duration" name="sessionDuration" required />
+                                <input className="mb-10 lg:w-[270px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="text" placeholder="Session duration" name="sessionDuration" required />
                                 <input className="mb-10 lg:w-[270px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="email" placeholder="Registration fee" defaultValue={0} name="registrationFee" required readOnly />
                             </div>
                         </div>

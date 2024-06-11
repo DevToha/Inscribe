@@ -22,6 +22,7 @@ import BookedSession from "../Pages/Dashboard/Booked Session/BookedSession";
 import UploadMaterial from "../Pages/Dashboard/Upload Material/UploadMaterial";
 import ViewStudySession from "../Pages/Dashboard/View All Study Session/ViewStudySession";
 import ViewAllNote from "../Pages/Dashboard/View All Note/ViewAllNote";
+import AdminAllSession from "../Pages/Dashboard/Admin all study session/AdminAllSession";
 
 export const router = createBrowserRouter([
     {
@@ -81,6 +82,10 @@ export const router = createBrowserRouter([
             {
                 path: 'allUser',
                 element: <AdminRoute><AllUser></AllUser></AdminRoute>
+            },
+            {
+                path: 'adminAllSession',
+                element: <AdminRoute><AdminAllSession></AdminAllSession></AdminRoute>
             },
 
             // // tutor routes

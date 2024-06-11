@@ -47,7 +47,7 @@ const Dashboard = () => {
                                         <NavLink to="/dashboard/allUser"><FaUsers /> All User</NavLink>
                                     </li>
                                     <li className="">
-                                        <NavLink to="/dashboard/allStudySession"><MdClass /> All Study Session</NavLink>
+                                        <NavLink to="/dashboard/adminAllSession"><MdClass /> All Study Session</NavLink>
                                     </li>
                                     <li className="my-8">
                                         <NavLink to="/dashboard/allMaterials"><SiMaterialformkdocs /> All Study Materials</NavLink>
