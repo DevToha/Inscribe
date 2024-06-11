@@ -7,11 +7,12 @@ import Swal from "sweetalert2";
 const AllUser = () => {
     const axiosSecure = useAxiosSecure();
     const [users, setUsers] = useState([]);
+    const [search, setSearch] = useState("");
 
     const { refetch } = useQuery({
-        queryKey: ['user'],
+        queryKey: ['user', search],
         queryFn: async () => {
-            const res = await axiosSecure.get('/user');
+            const res = await axiosSecure.get(`/user?search=${search}`);
             setUsers(res.data);
             return res.data;
         }
@@ -61,7 +62,17 @@ const AllUser = () => {
 
     return (
         <div>
-            Total user: {users.length}
+            <div className="flex mb-10 ml-8 gap-10">
+                <div className="mt-3 text-lg font-semibold">Total user: {users.length}</div>
+                <input
+                    type="text"
+                    placeholder="Search by name or email"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="input input-bordered w-full max-w-xs "
+                />
+                <button onClick={() => refetch()} className="btn btn-primary">Search</button>
+            </div>
 
             <div className="overflow-x-auto">
                 <table className="table">

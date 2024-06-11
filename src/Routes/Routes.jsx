@@ -19,6 +19,9 @@ import CreateSession from "../Pages/Dashboard/Create study session/CreateSession
 import TutorRoute from "./TutorRoute";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import BookedSession from "../Pages/Dashboard/Booked Session/BookedSession";
+import UploadMaterial from "../Pages/Dashboard/Upload Material/UploadMaterial";
+import ViewStudySession from "../Pages/Dashboard/View All Study Session/ViewStudySession";
+import ViewAllNote from "../Pages/Dashboard/View All Note/ViewAllNote";
 
 export const router = createBrowserRouter([
     {
@@ -61,6 +64,10 @@ export const router = createBrowserRouter([
                 element: <CreateNote></CreateNote>
             },
             {
+                path: 'bookedSessions',
+                element: <BookedSession></BookedSession>
+            },
+            {
                 path: 'personalNote',
                 element: <PersonalNote></PersonalNote>
             },
@@ -68,22 +75,41 @@ export const router = createBrowserRouter([
                 path: 'studyMaterial',
                 element: <StudyMaterial></StudyMaterial>
             },
+
+            // admin routes 
+
             {
-                path: 'allMaterials',
-                element: <AllMaterials></AllMaterials>
-            },
-            {
-                path: 'allUsers',
+                path: 'allUser',
                 element: <AdminRoute><AllUser></AllUser></AdminRoute>
             },
+
+            // // tutor routes
+
             {
                 path: 'createSession',
                 element: <TutorRoute><CreateSession></CreateSession></TutorRoute>
             },
             {
-                path: 'bookedSessions',
-                element: <BookedSession></BookedSession>
+                path: 'allMaterials',
+                element: <AllMaterials></AllMaterials>
             },
+            {
+                path: 'uploadMaterial',
+                element: <UploadMaterial></UploadMaterial>
+            },
+            {
+                path: 'viewAllStudySession',
+                element: <TutorRoute><ViewStudySession></ViewStudySession></TutorRoute>
+            },
+            {
+                path: 'viewAllNote',
+                element: <ViewAllNote></ViewAllNote>
+            },
+            {
+                path: 'allMaterials',
+                element: <AllMaterials></AllMaterials>
+            }
+
         ]
     }
 ]);

@@ -6,6 +6,7 @@ import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+// import image from './image/codioful-formerly-gradienta-bKESVqfxass-unsplash.jpg'
 
 
 const Login = () => {
@@ -122,10 +123,13 @@ const Login = () => {
 
 
     return (
-        <div>
-            <div className="bg-[#f7f7f7] mt-10 shadow8 py-5 px-1 lg:pl-[115px] md:pl-[153px] md:ml-[70px] lg:ml-[450px] rounded-3xl lg:w-[600px] md:w-[600px] w-[300px] ml-8">
+        <div className="pt-10">
+            <div className="">
+                {/* <img className="h-[400px] w-[1525px]" src={image} alt="" /> */}
+            </div>
+            <div className="bg-[#f7f7f7] mt-[85px] shadow-xl border-2 border-gray-300 py-5 px-1 lg:pl-[115px] md:pl-[153px] md:ml-[70px] lg:ml-[450px] rounded-3xl lg:w-[600px] md:w-[600px] w-[300px] ml-8">
                 <div className=" md:w-1/3 mt-10 mb-10">
-                    <h3 className="text-3xl mb-8 lg:ml-[60px] ml-8 font-semibold w-[230px]">Lets get started!</h3>
+                    <h3 className="text-3xl mb-8 lg:ml-[60px] ml-8 font-semibold w-[240px]">Lets get started!</h3>
                     <form
                         onSubmit={handleSignIn}
                     >

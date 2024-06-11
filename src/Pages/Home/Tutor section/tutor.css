@@ -1,0 +1,100 @@
+
+.card21 {
+    position: relative;
+    width: 240px;
+    height: 300px;
+    background-color: #f5f5f5;
+    font-family: "Inter", sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 3px;
+    border-radius: 5px;
+  }
+  
+  .card21 header {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background-color: rgb(24, 24, 24);
+    border-radius: 5px;
+  }
+  
+  .card21 header::before,
+  .card21 header::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: inherit;
+  }
+  
+  .card21 header::before {
+    transform: skewY(-10deg);
+    transform-origin: 100% 100%;
+  }
+  
+  .card21 header::after {
+    transform: skewY(10deg);
+    transform-origin: 0 100%;
+  }
+  
+  .card21-img {
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    margin-left: -50px;
+    z-index: 5;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #fff;
+  }
+  
+  .card21-img img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: auto;
+  }
+  
+  .card21 h2 {
+    position: relative;
+    margin: 90px 0 20px;
+    text-align: center;
+  }
+  
+  .card21 h2::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    margin-left: -20px;
+    width: 40px;
+    height: 1px;
+    background-color: #000;
+  }
+  
+  .card21-details {
+    padding: 3px;
+    text-align: center;
+    color: #777;
+    font-size: 13px;
+  }
+  
+  .card21-socials {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card21-socials a svg {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    margin: 5px 10px 0;
+  }
+  

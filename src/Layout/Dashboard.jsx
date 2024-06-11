@@ -64,16 +64,16 @@ const Dashboard = () => {
                                         <NavLink to="/dashboard/createSession"><FaRegUser /> Create study session</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/dashboard/manageSessions"><MdClass /> View all study sessions</NavLink>
+                                        <NavLink to="/dashboard/viewAllStudySession"><MdClass /> View all study sessions</NavLink>
                                     </li>
                                     <li className="my-8">
-                                        <NavLink to="/dashboard/viewStudentProgress"><FaUsers /> Upload materials</NavLink>
+                                        <NavLink to="/dashboard/uploadMaterial"><FaUsers /> Upload materials</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/dashboard/uploadMaterials"><SiMaterialformkdocs /> View all materials</NavLink>
+                                        <NavLink to="/dashboard/allMaterials"><SiMaterialformkdocs /> View all materials</NavLink>
                                     </li>
                                     <li className="my-8">
-                                        <NavLink to="/dashboard/allNotes"><SiMaterialformkdocs /> View all notes</NavLink>
+                                        <NavLink to="/dashboard/viewAllNote"><SiMaterialformkdocs /> View all notes</NavLink>
                                     </li>
                                 </>
                             ) : (

@@ -3,25 +3,25 @@ import { BookOpenIcon, Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
 
-    const { user, logOut } = useContext(AuthContext)
+const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
 
     const handleSignOut = () => {
         logOut()
             .then()
-            .catch()
-    }
+            .catch();
+    };
 
     let Links = [
         { name: "HOME", link: "/" },
-        { name: "DASHBOARD", link: "/dashboard" },
+        { name: "DASHBOARD", link: "/dashboard/cart" },
     ];
 
     let [open, setOpen] = useState(false);
 
     return (
-        <div className='shadow-md w-full max-w-screen-2xl sticky bg-opacity-70 bg-white text-black z-50'>
+        <div className='shadow-md w-full fixed top-0 left-0 bg-white z-50'>
             <div className='md:flex items-center justify-between py-4 md:px-10 px-7'>
                 {/* logo section */}
                 <div className='font-bold text-2xl cursor-pointer flex items-center gap-1'>
@@ -33,10 +33,15 @@ const Navbar = () => {
                     {open ? <XMarkIcon /> : <Bars3BottomRightIcon />}
                 </div>
                 {/* link items */}
-                <ul className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-opacity-70  md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-12' : 'top-[-490px]'}`}>
+                <ul
+                    className={`md:flex md:items-center bg-white md:bg-transparent transition-all duration-500 ease-in-out ${open ? 'right-0 bg-opacity-90' : 'right-[-50%] bg-opacity-0'} absolute md:static w-1/2 md:w-auto top-0 h-screen md:h-auto pl-9 md:pl-0 z-[-1] md:z-auto ${!open && 'md:mt-0'}`}
+                    style={{ transitionProperty: 'right, opacity' }}
+                >
                     {Links.map((link) => (
-                        <li key={link.name} className='md:ml-8 md:my-0 my-7 font-semibold'>
-                            <a href={link.link} className='hover:text-blue-400 duration-500'>{link.name}</a>
+                        <li key={link.name} className="md:ml-8 my-7 md:my-0 font-semibold">
+                            <Link to={link.link} className="text-gray-800 hover:text-blue-400 duration-500">
+                                {link.name}
+                            </Link>
                         </li>
                     ))}
                     <div className="lg:ml-16">

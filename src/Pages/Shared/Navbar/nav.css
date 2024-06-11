@@ -1,0 +1,15 @@
+/* Additional CSS styles for buttons */
+.btn-primary {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: bold;
+}
+
+.button40 {
+    margin: 0.5rem;
+}
+
+/* Ensuring the navbar stays on top */
+nav {
+    z-index: 50; /* Adjust as necessary to ensure it stays on top of other content */
+}

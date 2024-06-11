@@ -105,7 +105,7 @@ const SessionDetail = () => {
     const isButtonDisabled = isRegistrationClosed || isAdmin || isTutor;
 
     return (
-        <div>
+        <div className="pt-10 mt-10">
             <div className="flex justify-evenly">
                 <div>
                     <div className="card25 mt-28 pt-10">

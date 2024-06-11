@@ -79,8 +79,8 @@ const Register = () => {
     };
 
     return (
-        <div>
-            <div className="bg-[#f7f7f7] mt-10 shadow8 lg:py-5 md:py-5 py-1 px-1 lg:pl-[115px] md:pl-[153px] md:ml-[70px] lg:ml-[450px] rounded-3xl lg:w-[600px] md:w-[600px] w-[300px] ml-8">
+        <div className="pt-10">
+            <div className="bg-[#f7f7f7] mt-[85px] shadow-xl border-2 border-gray-300 lg:py-5 md:py-5 py-1 px-1 lg:pl-[115px] md:pl-[153px] md:ml-[70px] lg:ml-[450px] rounded-3xl lg:w-[600px] md:w-[600px] w-[300px] ml-8">
                 <div className="md:w-1/3 mt-10 mb-10">
                     <h3 className="text-3xl mb-8 font-semibold w-[230px] lg:ml-[77px] ml-[40px] md:ml-[50px]">Please Register</h3>
                     <form onSubmit={handleRegister}>
