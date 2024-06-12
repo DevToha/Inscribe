@@ -49,10 +49,10 @@ const StudySession = () => {
                 All Study Session
             </h1>
 
-            <div className="lg:grid lg:grid-cols-3 text-center ml-14">
+            <div className="lg:grid lg:grid-cols-3 text-center lg:ml-14 md:ml-16 ml-10">
                 {sessionsToShow.map((session) => (
                     <div key={session._id}>
-                        <div className="card15 mb-14 p-10">
+                        <div className="card15 lg:w-[450px] md:w-[650px] w-[300px] lg:h-[360px] md:h-[360px] h-[440px] mb-14 p-10">
                             <p className="text-2xl mb-6 font-semibold">Session Name: {session.sessionTitle}</p>
                             <p className="text-lg mb-6 font-semibold text-gray-700">Session Description: {session.sessionDescription}</p>
                             <p className="text-lg mb-6 font-semibold text-gray-500">Class Start Time: {session.classStartTime}</p>

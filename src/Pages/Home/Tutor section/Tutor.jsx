@@ -7,8 +7,8 @@ const Tutor = () => {
         <div className='ml-5'>
             <h1 className="my-10 text-center text-3xl font-semibold">Our Tutor</h1>
 
-            <div className='px-12 lg:flex gap-14 mb-10'>
-                <div className="card21">
+            <div className='px-12 lg:flex gap-14 mb-10 md:ml-[200px] lg:ml-0'>
+                <div className="card21 mb-5">
                     <header>
                         <div className="card21-img">
                             <img src="https://images.pexels.com/photos/412840/pexels-photo-412840.jpeg?auto=compress&cs=tinysrgb&w=600" alt="John Doe" />
@@ -37,7 +37,7 @@ const Tutor = () => {
                         </a>
                     </div>
                 </div>
-                <div className="card21">
+                <div className="card21 mb-5">
                     <header>
                         <div className="card21-img">
                             <img src="https://i.ibb.co/xYR3kVJ/images.jpg" alt="John Doe" />
@@ -66,7 +66,7 @@ const Tutor = () => {
                         </a>
                     </div>
                 </div>
-                <div className="card21">
+                <div className="card21 mb-5">
                     <header>
                         <div className="card21-img">
                             <img src="https://i.ibb.co/9hPhGCK/James-Headshot.jpg" alt="John Doe" />
@@ -95,7 +95,7 @@ const Tutor = () => {
                         </a>
                     </div>
                 </div>
-                <div className="card21">
+                <div className="card21 mb-5">
                     <header>
                         <div className="card21-img">
                             <img src="https://i.ibb.co/dJ9sGsH/348s.png" alt="John Doe" />
@@ -124,7 +124,7 @@ const Tutor = () => {
                         </a>
                     </div>
                 </div>
-                <div className="card21">
+                <div className="card21 mb-5">
                     <header>
                         <div className="card21-img">
                             <img src="https://i.ibb.co/HKNh3SQ/download.jpg" alt="John Doe" />
@@ -155,8 +155,8 @@ const Tutor = () => {
                 </div>
             </div>
 
-            <div className='px-12 lg:flex gap-14'>
-                <div className="card21">
+            <div className='px-12 lg:flex gap-14 md:ml-[200px] lg:ml-0'>
+                <div className="card21 mb-5">
                     <header>
                         <div className="card21-img">
                             <img src="https://i.ibb.co/Kjyg02n/images-2.jpg" alt="John Doe" />
@@ -185,7 +185,7 @@ const Tutor = () => {
                         </a>
                     </div>
                 </div>
-                <div className="card21">
+                <div className="card21 mb-5">
                     <header>
                         <div className="card21-img">
                             <img src="https://i.ibb.co/CH6b2kL/download-1.jpg" alt="John Doe" />
@@ -214,7 +214,7 @@ const Tutor = () => {
                         </a>
                     </div>
                 </div>
-                <div className="card21">
+                <div className="card21 mb-5">
                     <header>
                         <div className="card21-img">
                             <img src="https://i.ibb.co/vYShrHk/images-3.jpg" alt="John Doe" />
@@ -243,7 +243,7 @@ const Tutor = () => {
                         </a>
                     </div>
                 </div>
-                <div className="card21">
+                <div className="card21 mb-5">
                     <header>
                         <div className="card21-img">
                             <img src="https://i.ibb.co/MGhG4ZQ/images-4.jpg" alt="John Doe" />
@@ -272,7 +272,7 @@ const Tutor = () => {
                         </a>
                     </div>
                 </div>
-                <div className="card21">
+                <div className="card21 mb-5">
                     <header>
                         <div className="card21-img">
                             <img src="https://i.ibb.co/h95CkLB/images-5.jpg" alt="John Doe" />

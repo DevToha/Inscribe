@@ -106,7 +106,7 @@ const SessionDetail = () => {
 
     return (
         <div className="pt-10 mt-10">
-            <div className="flex justify-evenly">
+            <div className="lg:flex justify-evenly">
                 <div>
                     <div className="card25 mt-14 pt-5 p-10">
                         <h1 className="my-5 text-2xl font-bold">Session Title : {studySession.sessionTitle}</h1>
@@ -162,7 +162,7 @@ const SessionDetail = () => {
                 <h1 className="text-white text-lg font-semibold text-center py-6">Here is all review given by student about this session</h1>
             </div>
 
-            <div className="mt-14 grid grid-cols-4">
+            <div className="mt-14 grid lg:grid-cols-4 md:grid-cols-2">
                 {reviews.map((review) => (
                     <div key={review._id}>
                         <div className="card6 mb-10 ml-8 py-10 px-5 w-[320px]">
