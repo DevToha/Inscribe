@@ -24,10 +24,13 @@ import ViewStudySession from "../Pages/Dashboard/View All Study Session/ViewStud
 import ViewAllNote from "../Pages/Dashboard/View All Note/ViewAllNote";
 import AdminAllSession from "../Pages/Dashboard/Admin all study session/AdminAllSession";
 import UpdateSession from "../Pages/Dashboard/Update session/UpdateSession";
+import AdminDashboard from "../Pages/Dashboard/Admin dashboard/AdminDashboard";
+import Error from "../Error Page/Error";
 
 export const router = createBrowserRouter([
     {
         path: "/",
+        errorElement: <Error></Error>,
         element: <Main></Main>,
         children: [
             {
@@ -91,6 +94,10 @@ export const router = createBrowserRouter([
             {
                 path: 'updateSession',
                 element: <AdminRoute><UpdateSession></UpdateSession></AdminRoute>
+            },
+            {
+                path: 'adminDashboard',
+                element: <AdminRoute><AdminDashboard></AdminDashboard></AdminRoute>
             },
 
             // // tutor routes

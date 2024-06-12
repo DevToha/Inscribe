@@ -43,6 +43,9 @@ const Dashboard = () => {
                                     <li className="mt-8">
                                         <NavLink to="/"><FaHome /> Home</NavLink>
                                     </li>
+                                    <li className="mt-8">
+                                        <NavLink to="/dashboard/adminDashboard"><FaUsers /> Admin Dashboard</NavLink>
+                                    </li>
                                     <li className="my-8">
                                         <NavLink to="/dashboard/allUser"><FaUsers /> All User</NavLink>
                                     </li>
