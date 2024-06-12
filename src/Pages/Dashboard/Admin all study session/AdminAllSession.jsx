@@ -18,6 +18,19 @@ const AdminAllSession = () => {
     const [rejectionReason, setRejectionReason] = useState("");
     const [feedback, setFeedback] = useState("");
     const [showRejectModal, setShowRejectModal] = useState(false);
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [updateData, setUpdateData] = useState({
+        sessionTitle: "",
+        tutorName: "",
+        tutorEmail: "",
+        sessionDescription: "",
+        registrationStartDate: "",
+        registrationEndDate: "",
+        classStartTime: "",
+        classEndDate: "",
+        sessionDuration: "",
+        registrationFee: "",
+    });
     const [currentPage, setCurrentPage] = useState(1);
     const sessionsPerPage = 2;
     const modalRef = useRef(null);
@@ -105,6 +118,59 @@ const AdminAllSession = () => {
         setFeedback("");
     }
 
+    const openUpdateModal = (session) => {
+        setSelectedSessionId(session._id);
+        setUpdateData({
+            sessionTitle: session.sessionTitle,
+            tutorName: session.tutorName,
+            tutorEmail: session.tutorEmail,
+            sessionDescription: session.sessionDescription,
+            registrationStartDate: session.registrationStartDate,
+            registrationEndDate: session.registrationEndDate,
+            classStartTime: session.classStartTime,
+            classEndDate: session.classEndDate,
+            sessionDuration: session.sessionDuration,
+            registrationFee: session.registrationFee,
+        });
+        setShowUpdateModal(true);
+    }
+
+    const closeUpdateModal = () => {
+        setShowUpdateModal(false);
+    }
+
+    const handleUpdateSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axiosPublic.patch(`/studySession/${selectedSessionId}`, updateData);
+            if (response.data.modifiedCount > 0) {
+                closeUpdateModal();
+                refetch(); // Refresh the sessions list
+                Swal.fire({
+                    title: "Session Updated Successfully",
+                    icon: "success"
+                });
+            }
+        } catch (error) {
+            console.error('Error updating session:', error);
+        }
+    }
+
+    const handleDelete = async (sessionId) => {
+        try {
+            const response = await axiosPublic.delete(`/studySession/${sessionId}`);
+            if (response.data.deletedCount > 0) {
+                refetch(); // Refresh the sessions list
+                Swal.fire({
+                    title: "Session Deleted Successfully",
+                    icon: "success"
+                });
+            }
+        } catch (error) {
+            console.error('Error deleting session:', error);
+        }
+    }
+
     return (
         <div>
             <h3 className="text-3xl font-semibold text-center text-gray-600">All Pending and Approved Study Sessions</h3>
@@ -136,8 +202,8 @@ const AdminAllSession = () => {
                                 </>
                             ) : (
                                 <>
-                                    <button className="btn btn-warning">Update</button>
-                                    <button className="btn btn-warning">Delete</button>
+                                    <button className="btn btn-warning" onClick={() => openUpdateModal(session)}>Update</button>
+                                    <button className="btn btn-warning" onClick={() => handleDelete(session._id)}>Delete</button>
                                 </>
                             )}
 
@@ -151,58 +217,134 @@ const AdminAllSession = () => {
                                         <input className="btn btn-secondary" type="submit" value="Submit" />
                                     </form>
                                     <div className="modal-action">
-                                        <button className="btn btn-warning" onClick={() => modalRef.current.close()}>Close</button>
+                                        <button className="btn btn-secondary" onClick={() => modalRef.current.close()}>Close</button>
                                     </div>
+                                </div>
+                            </dialog>
+
+                            <dialog open={showRejectModal} className="modal modal-bottom sm:modal-middle" id="rejectModal">
+                                <div className="modal-box">
+                                    <h3 className="font-bold text-lg">Reject Session</h3>
+                                    <form onSubmit={handleRejectSubmit}>
+                                        <label className="label">Rejection Reason</label>
+                                        <textarea
+                                            className="textarea textarea-bordered w-full"
+                                            value={rejectionReason}
+                                            onChange={(e) => setRejectionReason(e.target.value)}
+                                            required
+                                        ></textarea>
+                                        <label className="label">Feedback</label>
+                                        <textarea
+                                            className="textarea textarea-bordered w-full"
+                                            value={feedback}
+                                            onChange={(e) => setFeedback(e.target.value)}
+                                            required
+                                        ></textarea>
+                                        <div className="modal-action">
+                                            <button type="submit" className="btn btn-warning">Submit</button>
+                                            <button type="button" className="btn" onClick={closeRejectModal}>Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </dialog>
+
+                            <dialog open={showUpdateModal} className="modal modal-bottom sm:modal-middle" id="updateModal">
+                                <div className="modal-box">
+                                    <h3 className="font-bold text-lg">Update Session</h3>
+                                    <form onSubmit={handleUpdateSubmit}>
+                                        <label className="label">Session Title</label>
+                                        <input
+                                            className="input input-bordered w-full"
+                                            value={updateData.sessionTitle}
+                                            onChange={(e) => setUpdateData({ ...updateData, sessionTitle: e.target.value })}
+                                            required
+                                        />
+                                        <label className="label">Tutor Name</label>
+                                        <input
+                                            className="input input-bordered w-full"
+                                            value={updateData.tutorName}
+                                            onChange={(e) => setUpdateData({ ...updateData, tutorName: e.target.value })}
+                                            required
+                                        />
+                                        <label className="label">Tutor Email</label>
+                                        <input
+                                            className="input input-bordered w-full"
+                                            value={updateData.tutorEmail}
+                                            onChange={(e) => setUpdateData({ ...updateData, tutorEmail: e.target.value })}
+                                            required
+                                        />
+                                        <label className="label">Session Description</label>
+                                        <textarea
+                                            className="textarea textarea-bordered w-full"
+                                            value={updateData.sessionDescription}
+                                            onChange={(e) => setUpdateData({ ...updateData, sessionDescription: e.target.value })}
+                                            required
+                                        ></textarea>
+                                        <label className="label">Registration Start Date</label>
+                                        <input
+                                            className="input input-bordered w-full"
+                                            value={updateData.registrationStartDate}
+                                            onChange={(e) => setUpdateData({ ...updateData, registrationStartDate: e.target.value })}
+                                            required
+                                        />
+                                        <label className="label">Registration End Date</label>
+                                        <input
+                                            className="input input-bordered w-full"
+                                            value={updateData.registrationEndDate}
+                                            onChange={(e) => setUpdateData({ ...updateData, registrationEndDate: e.target.value })}
+                                            required
+                                        />
+                                        <label className="label">Class Start Date</label>
+                                        <input
+                                            className="input input-bordered w-full"
+                                            value={updateData.classStartTime}
+                                            onChange={(e) => setUpdateData({ ...updateData, classStartTime: e.target.value })}
+                                            required
+                                        />
+                                        <label className="label">Class End Date</label>
+                                        <input
+                                            className="input input-bordered w-full"
+                                            value={updateData.classEndDate}
+                                            onChange={(e) => setUpdateData({ ...updateData, classEndDate: e.target.value })}
+                                            required
+                                        />
+                                        <label className="label">Session Duration</label>
+                                        <input
+                                            className="input input-bordered w-full"
+                                            value={updateData.sessionDuration}
+                                            onChange={(e) => setUpdateData({ ...updateData, sessionDuration: e.target.value })}
+                                            required
+                                        />
+                                        <label className="label">Registration Fee</label>
+                                        <input
+                                            className="input input-bordered w-full"
+                                            value={updateData.registrationFee}
+                                            onChange={(e) => setUpdateData({ ...updateData, registrationFee: e.target.value })}
+                                            required
+                                        />
+                                        <div className="modal-action">
+                                            <button type="submit" className="btn btn-warning">Update</button>
+                                            <button type="button" className="btn" onClick={closeUpdateModal}>Cancel</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </dialog>
                         </div>
                     ))
                 )}
             </div>
-            <div className="flex justify-center mt-5">
-                {Array.from({ length: totalPages }, (_, index) => (
+
+            <div className="flex justify-center mt-4">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNumber => (
                     <button
-                        key={index}
-                        onClick={() => handlePageChange(index + 1)}
-                        className={`mx-1 px-3 py-1 rounded ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
+                        key={pageNumber}
+                        className={`mx-1 px-3 py-1 rounded ${currentPage === pageNumber ? "bg-blue-500 text-white" : "bg-gray-300"}`}
+                        onClick={() => handlePageChange(pageNumber)}
                     >
-                        {index + 1}
+                        {pageNumber}
                     </button>
                 ))}
             </div>
-
-            {showRejectModal && (
-                <div className="modal modal-open">
-                    <div className="modal-box">
-                        <h3 className="font-bold text-lg">Reject Session</h3>
-                        <form onSubmit={handleRejectSubmit}>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Rejection Reason</label>
-                                <input
-                                    type="text"
-                                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                    value={rejectionReason}
-                                    onChange={(e) => setRejectionReason(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Feedback</label>
-                                <textarea
-                                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                    value={feedback}
-                                    onChange={(e) => setFeedback(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <div className="modal-action">
-                                <button type="submit" className="btn btn-warning">Submit</button>
-                                <button type="button" className="btn btn-secondary" onClick={closeRejectModal}>Close</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            )}
         </div>
     );
 }

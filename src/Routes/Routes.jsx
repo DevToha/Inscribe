@@ -23,6 +23,7 @@ import UploadMaterial from "../Pages/Dashboard/Upload Material/UploadMaterial";
 import ViewStudySession from "../Pages/Dashboard/View All Study Session/ViewStudySession";
 import ViewAllNote from "../Pages/Dashboard/View All Note/ViewAllNote";
 import AdminAllSession from "../Pages/Dashboard/Admin all study session/AdminAllSession";
+import UpdateSession from "../Pages/Dashboard/Update session/UpdateSession";
 
 export const router = createBrowserRouter([
     {
@@ -86,6 +87,10 @@ export const router = createBrowserRouter([
             {
                 path: 'adminAllSession',
                 element: <AdminRoute><AdminAllSession></AdminAllSession></AdminRoute>
+            },
+            {
+                path: 'updateSession',
+                element: <AdminRoute><UpdateSession></UpdateSession></AdminRoute>
             },
 
             // // tutor routes
