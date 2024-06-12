@@ -63,11 +63,11 @@ const CreateSession = () => {
 
     return (
         <div>
-            <div className="bg-[#3b7f9188] shadow8 py-5 lg:pl-[92px] md:pl-[92px] pl-[80px] md:ml-0 lg:ml-[100px] rounded-3xl lg:w-[785px]">
-                <h3 className="text-3xl font-semibold ml-32 text-gray-600">Let Create Study Session</h3>
+            <div className="bg-[#3b7f9188] mt-10 lg:mt-0 md:mt-0 shadow8 py-5 lg:pl-[92px] md:pl-[72px] pl-[45px] md:ml-0 lg:ml-[100px] rounded-3xl lg:w-[785px]">
+                <h3 className="text-3xl font-semibold lg:ml-32 text-gray-600">Let Create Study Session</h3>
                 <div className=" md:w-1/3 mt-10 mb-10">
                     <form onSubmit={handleAddJob}>
-                        <div className="lg:flex md:flex gap-16">
+                        <div className="lg:flex gap-16">
                             <div>
                                 <input className="mb-10 lg:w-[270px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="name" placeholder="Session Title" name="sessionTitle" required />
                                 <input className="mb-10 lg:w-[270px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="text" placeholder="Tutor name" defaultValue={user.displayName} name="tutorName" required />
@@ -84,8 +84,8 @@ const CreateSession = () => {
                             </div>
                         </div>
                         <div>
-                            <input className="mb-10 lg:w-[605px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="text" placeholder="Status" defaultValue="Pending" name="status" required readOnly />
-                            <input className=" btn cursor-pointer ml-10 lg:ml-0 md:ml-0 mt-1 lg:w-[605px] md:w-[580px] py-2 px-4 border-2 rounded-md border-gray-300 bg-blue-500 text-white text-lg font-medium" type="submit" value="ADD NOW" />
+                            <input className="mb-10 lg:w-[600px] md:w-[260px] py-2 px-4 border-2 border-gray-300 rounded-md" type="text" placeholder="Status" defaultValue="Pending" name="status" required readOnly />
+                            <input className=" btn cursor-pointer ml-10 lg:ml-0 md:ml-0 mt-1 lg:w-[600px] md:w-[280px] py-2 px-4 border-2 rounded-md border-gray-300 bg-blue-500 text-white text-lg font-medium" type="submit" value="ADD NOW" />
                         </div>
                     </form>
                 </div>

@@ -64,7 +64,7 @@ const ViewStudySession = () => {
 
     return (
         <div>
-            <h3 className="text-3xl font-semibold text-gray-600 text-center pb-5 border-b-4 border-gray-600">Your Created Study Sessions</h3>
+            <h3 className="text-3xl mt-10 md:mt-0 lg:mt-0 font-semibold text-gray-600 text-center pb-5 border-b-4 border-gray-600">Your Created Study Sessions</h3>
             <div className="mt-10 border-2 border-gray-300 rounded-lg text-xl">
                 {loading ? (
                     <span className="loading loading-dots loading-lg"></span>

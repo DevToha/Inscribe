@@ -24,12 +24,12 @@ const ViewAllNote = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-semibold text-center">Here is all note create by student</h1>
+            <h1 className="text-3xl font-semibold text-center mt-10 lg:mt-0 md:mt-0">Here is all note create by student</h1>
             <div className="mt-10">
                 {loading ? (
                     <span className="loading loading-dots loading-lg"></span>
                 ) : (
-                    <div className="grid grid-cols-3">
+                    <div className="grid lg:grid-cols-3">
                         {note.map((notes) => (
                             <div key={notes._id}>
                                 <div className="card26 w-[300px] mb-10 p-10">
