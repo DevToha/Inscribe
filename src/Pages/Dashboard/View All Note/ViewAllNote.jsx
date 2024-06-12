@@ -24,6 +24,7 @@ const ViewAllNote = () => {
 
     return (
         <div>
+            <h1 className="text-3xl font-semibold text-center">Here is all note create by student</h1>
             <div className="mt-10">
                 {loading ? (
                     <span className="loading loading-dots loading-lg"></span>
@@ -31,8 +32,9 @@ const ViewAllNote = () => {
                     <div className="grid grid-cols-3">
                         {note.map((notes) => (
                             <div key={notes._id}>
-                                <div className="card26 mb-10 ml-16 p-10">
-                                    <p>Your Note : {notes.description}</p>
+                                <div className="card26 w-[300px] mb-10 p-10">
+                                    <p>Student Email : {notes.email}</p>
+                                    <p>Student Note : {notes.description}</p>
                                 </div>
                             </div>
                         ))}

@@ -174,13 +174,13 @@ const AdminAllSession = () => {
     return (
         <div>
             <h3 className="text-3xl font-semibold text-center text-gray-600">All Pending and Approved Study Sessions</h3>
-            <div className="mt-5">
+            <div className="mt-5 text-xl">
                 {currentSessions.length === 0 ? (
                     <p>No pending or approved study sessions found.</p>
                 ) : (
                     currentSessions.map(session => (
                         <div key={session._id} className="mb-5 p-5 border-2 border-gray-300 rounded-md">
-                            <h4 className="text-xl font-semibold">Title Name: {session.sessionTitle}</h4>
+                            <h4 className="text-2xl font-bold">Title Name: {session.sessionTitle}</h4>
                             <p className="my-2"><strong>Tutor Name:</strong> {session.tutorName}</p>
                             <p><strong>Tutor Email:</strong> {session.tutorEmail}</p>
                             <p className="my-2"><strong>Description:</strong> {session.sessionDescription}</p>

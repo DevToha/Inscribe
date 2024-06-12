@@ -9,6 +9,7 @@ const PersonalNote = () => {
     const [note, setNote] = useState([]);
     const [isEditing, setIsEditing] = useState(null);
     const [updatedDescription, setUpdatedDescription] = useState("");
+    const [loading, setLoading] = useState(true);  // Add loading state
     const modalRef = useRef(null);
 
     useEffect(() => {
@@ -19,6 +20,8 @@ const PersonalNote = () => {
                 setNote(data);
             } catch (error) {
                 console.error('Error fetching notes:', error);
+            } finally {
+                setLoading(false);  // Set loading to false after data is fetched
             }
         };
 
@@ -66,41 +69,51 @@ const PersonalNote = () => {
     return (
         <div>
             <ToastContainer />
-            <h1>Your Personal Note</h1>
-            <div className="mt-14 grid grid-cols-3">
-                {note.map((notes) => (
-                    <div key={notes._id}>
-                        <div className="card26 mb-10 ml-16 p-10">
-                            <p>Your Note : {notes.title}</p>
-                            <p>Your Note : {notes.description}</p>
-                            <button className="btn btn-accent" onClick={() => handleDelete(notes._id)}>Delete</button>
-                            <br />
-                            <button className="btn btn-accent" onClick={() => { setIsEditing(notes._id); openModal(); }}>Update</button>
-                            {isEditing === notes._id && (
-                                <div>
-                                    <dialog ref={modalRef} id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-                                        <div className="modal-box">
-                                            <h3 className="font-bold text-lg">Update Note</h3>
-                                            <textarea
-                                                value={updatedDescription}
-                                                onChange={(e) => setUpdatedDescription(e.target.value)}
-                                                className="textarea textarea-bordered w-full"
-                                                placeholder="Update your note description"
-                                            />
-                                            <div className="modal-action">
-                                                <form method="dialog">
-                                                    <button className="btn">Close</button>
-                                                </form>
-                                                <button className="btn btn-accent" onClick={() => handleUpdate(notes._id)}>Save</button>
+            <h1 className="text-3xl font-semibold text-center">Your Personal Notes</h1>
+            {loading ? (
+                <div className="flex justify-center items-center h-full">
+                    <span className="loading loading-dots loading-lg"></span>
+                </div>
+            ) : (
+                <div className="mt-8 grid grid-cols-2">
+                    {note.map((notes) => (
+                        <div key={notes._id}>
+                            <div className="card27 w-[460px] mb-10 px-10 py-14 ">
+                                <div className="">
+                                    <p className="text-2xl font-bold mb-5">Your Note Title: {notes.title}</p>
+                                    <p className="text-xl font-bold mb-10 text-gray-600">Your Note : {notes.description}</p>
+                                    <div className="flex gap-5">
+                                        <button className="btn btn-warning" onClick={() => handleDelete(notes._id)}>Delete</button>
+                                        <br />
+                                        <button className="btn btn-accent" onClick={() => { setIsEditing(notes._id); openModal(); }}>Update</button>
+                                        {isEditing === notes._id && (
+                                            <div>
+                                                <dialog ref={modalRef} id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                                                    <div className="modal-box">
+                                                        <h3 className="font-bold text-lg">Update Note</h3>
+                                                        <textarea
+                                                            value={updatedDescription}
+                                                            onChange={(e) => setUpdatedDescription(e.target.value)}
+                                                            className="textarea textarea-bordered w-full"
+                                                            placeholder="Update your note description"
+                                                        />
+                                                        <div className="modal-action">
+                                                            <form method="dialog">
+                                                                <button className="btn">Close</button>
+                                                            </form>
+                                                            <button className="btn btn-accent" onClick={() => handleUpdate(notes._id)}>Save</button>
+                                                        </div>
+                                                    </div>
+                                                </dialog>
                                             </div>
-                                        </div>
-                                    </dialog>
+                                        )}
+                                    </div>
                                 </div>
-                            )}
+                            </div>
                         </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

@@ -1,11 +1,11 @@
 
 .card26 {
-    width: 180px;
-    height: 264px;
+    /* width: 180px; */
+    height: auto;
     border-radius: 4px;
     background-color: #f5f5f5;
     font-family: "Inter", sans-serif;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 5px;
   }
   .card26:hover {
     cursor: pointer;
