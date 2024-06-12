@@ -52,10 +52,10 @@ const Navbar = () => {
                                 :
                                 <div className="">
                                     <Link to="/login">
-                                        <button className=" button40 lg:mb-0 md:mb-0 mb-5">LOGIN</button>
+                                        <button className="md:ml-5 lg:ml-0 button40 lg:mb-0 md:mb-0 mb-5">LOGIN</button>
                                     </Link>
                                     <Link to="/register">
-                                        <button className="button40 ml-8">REGISTER</button>
+                                        <button className="button40 lg:ml-8 md:ml-8">REGISTER</button>
                                     </Link>
                                 </div>
                         }
