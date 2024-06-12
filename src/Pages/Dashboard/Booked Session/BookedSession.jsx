@@ -26,7 +26,7 @@ const BookedSession = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-semibold text-center mb-10">Your Booked Sessions</h1>
+            <h1 className="text-3xl font-semibold text-center mb-10 mt-10 lg:mt-0 md:mt-0">Your Booked Sessions</h1>
             <div className="lg:grid lg:grid-cols-2 text-center">
                 {bookedSessions.map((session) => (
                     <div key={session._id}>

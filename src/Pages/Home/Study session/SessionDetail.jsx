@@ -108,7 +108,7 @@ const SessionDetail = () => {
         <div className="pt-10 mt-10">
             <div className="lg:flex justify-evenly">
                 <div>
-                    <div className="card25 mt-14 pt-5 p-10">
+                    <div className="card25 w-[300px] h-[720px] md:w-[680px] md:h-[580px] lg:w-[480px] lg:h-[580px] mt-14 pt-5 p-10 ml-10 lg:ml-0 md:ml-12">
                         <h1 className="my-5 text-2xl font-bold">Session Title : {studySession.sessionTitle}</h1>
                         <p className="text-xl font-bold text-gray-600">Tutor Name : {studySession.tutorName}</p>
                         <p className="my-5 text-xl font-bold text-gray-600">Session Description : {studySession.sessionDescription}</p>
@@ -127,8 +127,8 @@ const SessionDetail = () => {
 
                 <div>
                     <ToastContainer />
-                    <div className="bg-gray-300 shadow8 pt-5 pb-8 md:ml-0 mt-10 rounded-3xl lg:w-[550px] pl-[40px]">
-                        <h3 className="text-3xl font-semibold ml-28 text-gray-500">Give Your Review</h3>
+                    <div className="bg-gray-300 shadow8 pt-5 pb-8 md:ml-0 mt-10 rounded-3xl lg:w-[550px] lg:pl-[40px] md:pl-[85px] pl-20">
+                        <h3 className="text-3xl font-semibold lg:ml-28 md:ml-56 ml-0 text-gray-500">Give Your Review</h3>
                         <div className=" md:w-1/3 mt-10 ">
                             <form onSubmit={handleAddReview}>
                                 <div>

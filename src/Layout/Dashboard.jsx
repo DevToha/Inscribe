@@ -18,10 +18,10 @@ const Dashboard = () => {
     const [isTutor] = useTutor();
 
     return (
-        <div className="px-20">
-            <div className="flex gap-20 p-10 card8 bg-slate-100">
+        <div className="lg:px-20">  
+            <div className="lg:flex md:flex gap-20 p-10 card8 bg-slate-100">
                 {/* dashboard sidebar */}
-                <div className="w-64 min-h-full bg-[#477192] rounded-md">
+                <div className="w-64 lg:ml-0 md:ml-0 ml-10 min-h-full bg-[#477192] rounded-md">
                     <ul className="menu p-4 text-white">
                         {user ? (
                             <>

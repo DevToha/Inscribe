@@ -69,16 +69,16 @@ const PersonalNote = () => {
     return (
         <div>
             <ToastContainer />
-            <h1 className="text-3xl font-semibold text-center">Your Personal Notes</h1>
+            <h1 className="text-3xl font-semibold text-center lg:mt-0 md:mt-0 mt-10">Your Personal Notes</h1>
             {loading ? (
                 <div className="flex justify-center items-center h-full">
                     <span className="loading loading-dots loading-lg"></span>
                 </div>
             ) : (
-                <div className="mt-8 grid grid-cols-2">
+                <div className="mt-8 grid lg:grid-cols-2">
                     {note.map((notes) => (
                         <div key={notes._id}>
-                            <div className="card27 w-[460px] mb-10 px-10 py-14 ">
+                            <div className="card27 lg:w-[460px] md:w-[300px] mb-10 px-10 py-14 ">
                                 <div className="">
                                     <p className="text-2xl font-bold mb-5">Your Note Title: {notes.title}</p>
                                     <p className="text-xl font-bold mb-10 text-gray-600">Your Note : {notes.description}</p>
