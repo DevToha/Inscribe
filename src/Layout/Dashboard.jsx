@@ -80,11 +80,8 @@ const Dashboard = () => {
 
                                 // student route 
                                 <>
-                                    <li className="mt-8">
-                                        <NavLink to="/"><FaHome /> Home</NavLink>
-                                    </li>
                                     <li className="my-8">
-                                        <NavLink to="/dashboard/userHome"><FaRegUser /> User Home</NavLink>
+                                        <NavLink to="/"><FaHome /> Home</NavLink>
                                     </li>
                                     <li>
                                         <NavLink to="/dashboard/bookedSessions"><RiBookMarkedFill /> View booked session</NavLink>

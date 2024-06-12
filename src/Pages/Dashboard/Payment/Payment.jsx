@@ -9,14 +9,15 @@ const Payment = () => {
     const location = useLocation();
     const { BookedSession } = location.state;
 
-    console.log('BookedSession:', BookedSession); // Add this to verify the data
+    console.log('BookedSession:', BookedSession);
 
     return (
         <div className="p-10">
-            <h1 className="text-xl font-semibold text-center mt-32 mb-10">Please pay for book the session</h1>
-            <div className="px-56">
+            <h1 className="text-2xl font-semibold text-center mt-32 py-10 border-t-4 border-b-4 border-gray-600 mb-5">Please pay for booked the session</h1>
+            <h1 className="text-xl font-semibold text-center mb-10 text-gray-700">Your Total Amount: {BookedSession.registrationFee}</h1>
+            <div className="lg:px-72">
                 <Elements stripe={stripePromise}>
-                    <CheckOutForm BookedSession={BookedSession}></CheckOutForm> {/* Ensure prop name is correct */}
+                    <CheckOutForm BookedSession={BookedSession}></CheckOutForm>
                 </Elements>
             </div>
         </div>

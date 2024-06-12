@@ -108,16 +108,16 @@ const SessionDetail = () => {
         <div className="pt-10 mt-10">
             <div className="flex justify-evenly">
                 <div>
-                    <div className="card25 mt-28 pt-10">
-                        <h1>sessionTitle : {studySession.sessionTitle}</h1>
-                        <p className="my-5">sessionDescription : {studySession.sessionDescription}</p>
-                        <p>tutorName : {studySession.tutorName}</p>
-                        <p>Registration Fee : {studySession.registrationFee}</p>
-                        <p>registrationEndDate : {studySession.registrationEndDate}</p>
-                        <p>classStartTime : {studySession.classStartTime}</p>
-                        <p>classEndDate : {studySession.classEndDate}</p>
-                        <p>sessionDuration : {studySession.sessionDuration}</p>
-                        <p className="mt-5">Registration End Date : {studySession.registrationEndDate}</p>
+                    <div className="card25 mt-14 pt-5 p-10">
+                        <h1 className="my-5 text-2xl font-bold">Session Title : {studySession.sessionTitle}</h1>
+                        <p className="text-xl font-bold text-gray-600">Tutor Name : {studySession.tutorName}</p>
+                        <p className="my-5 text-xl font-bold text-gray-600">Session Description : {studySession.sessionDescription}</p>
+                        <p className="text-xl font-bold text-gray-600">Registration Fee : {studySession.registrationFee}</p>
+                        <p className="my-5 text-xl font-bold text-gray-600">Registration EndDate : {studySession.registrationEndDate}</p>
+                        <p className="text-xl font-bold text-gray-600">Class StartTime : {studySession.classStartTime}</p>
+                        <p className="my-5 text-xl font-bold text-gray-600">Class EndDate : {studySession.classEndDate}</p>
+                        <p className="text-xl font-bold text-gray-600">Session Duration : {studySession.sessionDuration}</p>
+                        <p className="my-5 text-xl font-bold text-gray-600">Registration End Date : {studySession.registrationEndDate}</p>
 
                         <button onClick={handleBookNow} className="card15-btn btn my-5" disabled={isButtonDisabled}>
                             {isRegistrationClosed ? 'Registration Closed' : (isAdmin || isTutor) ? 'Only Student Can Register' : 'Book Now'}
@@ -162,17 +162,20 @@ const SessionDetail = () => {
                 <h1 className="text-white text-lg font-semibold text-center py-6">Here is all review given by student about this session</h1>
             </div>
 
-            <div className="mt-14 grid grid-cols-3">
+            <div className="mt-14 grid grid-cols-4">
                 {reviews.map((review) => (
                     <div key={review._id}>
-                        <div className="card25 mb-10 ml-16">
+                        <div className="card6 mb-10 ml-8 py-10 px-5 w-[320px]">
+
+                            <p className="text-lg font-semibold mb-5">Name : {review.name}</p>
+                            <p className="text-lg font-semibold text-gray-600 mb-5">Email : {review.email}</p>
+                            <p className="text-lg font-semibold text-gray-600 mb-5">Date : {review.date}</p>
+                            <p className="text-lg font-semibold text-gray-600 mb-5">Review : {review.review}</p>
                             <Rating
                                 style={{ maxWidth: 180 }}
                                 value={review.rating}
                                 readOnly
-                            />
-                            <p>{review.review}</p>
-                        </div>
+                            />                        </div>
                     </div>
                 ))}
             </div>

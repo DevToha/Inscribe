@@ -179,22 +179,22 @@ const AdminAllSession = () => {
                     <p>No pending or approved study sessions found.</p>
                 ) : (
                     currentSessions.map(session => (
-                        <div key={session._id} className="mb-5 p-5 border rounded-md">
-                            <h4 className="text-xl font-semibold">{session.sessionTitle}</h4>
-                            <p><strong>Tutor Name:</strong> {session.tutorName}</p>
+                        <div key={session._id} className="mb-5 p-5 border-2 border-gray-300 rounded-md">
+                            <h4 className="text-xl font-semibold">Title Name: {session.sessionTitle}</h4>
+                            <p className="my-2"><strong>Tutor Name:</strong> {session.tutorName}</p>
                             <p><strong>Tutor Email:</strong> {session.tutorEmail}</p>
-                            <p><strong>Description:</strong> {session.sessionDescription}</p>
+                            <p className="my-2"><strong>Description:</strong> {session.sessionDescription}</p>
                             <p><strong>Registration Start Date:</strong> {session.registrationStartDate}</p>
-                            <p><strong>Registration End Date:</strong> {session.registrationEndDate}</p>
+                            <p className="my-2"><strong>Registration End Date:</strong> {session.registrationEndDate}</p>
                             <p><strong>Class Start Date:</strong> {session.classStartTime}</p>
-                            <p><strong>Class End Date:</strong> {session.classEndDate}</p>
+                            <p className="my-2"><strong>Class End Date:</strong> {session.classEndDate}</p>
                             <p><strong>Session Duration:</strong> {session.sessionDuration}</p>
-                            <p><strong>Registration Fee:</strong> ${session.registrationFee}</p>
-                            <p><strong>Status:</strong> {session.status}</p>
+                            <p className="my-2"><strong>Registration Fee:</strong> ${session.registrationFee}</p>
+                            <p className="mb-6"><strong>Status:</strong> {session.status}</p>
 
                             {session.status === 'Pending' ? (
                                 <>
-                                    <button className="btn btn-success my-5" onClick={() => {
+                                    <button className="btn btn-success my-5 mr-10" onClick={() => {
                                         setSelectedSessionId(session._id);
                                         modalRef.current.showModal();
                                     }}>Approve</button>
@@ -202,7 +202,7 @@ const AdminAllSession = () => {
                                 </>
                             ) : (
                                 <>
-                                    <button className="btn btn-warning" onClick={() => openUpdateModal(session)}>Update</button>
+                                    <button className="btn btn-primary mr-10" onClick={() => openUpdateModal(session)}>Update</button>
                                     <button className="btn btn-warning" onClick={() => handleDelete(session._id)}>Delete</button>
                                 </>
                             )}
