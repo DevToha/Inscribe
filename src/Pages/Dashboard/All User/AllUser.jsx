@@ -66,7 +66,7 @@ const AllUser = () => {
     return (
         <div>
             <div className="flex mb-10 ml-8 gap-10 items-center">
-                <div className="mt-3 text-lg font-semibold">Total user: {users.length}</div>
+                <div className="lg:mt-3 mt-16 text-lg font-semibold">Total user: {users.length}</div>
                 <input
                     type="text"
                     placeholder="Search by name or email"

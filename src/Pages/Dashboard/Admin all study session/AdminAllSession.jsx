@@ -173,7 +173,7 @@ const AdminAllSession = () => {
 
     return (
         <div>
-            <h3 className="text-3xl font-semibold text-center text-gray-600">All Pending and Approved Study Sessions</h3>
+            <h3 className="text-3xl mt-10 lg:mt-0 md:mt-0 font-semibold text-center text-gray-600">All Pending and Approved Study Sessions</h3>
             <div className="mt-5 text-xl">
                 {currentSessions.length === 0 ? (
                     <p>No pending or approved study sessions found.</p>

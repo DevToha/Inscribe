@@ -154,7 +154,7 @@ const Login = () => {
                     <div className="relative">
                         <button
                             onClick={handleGitHubButton}
-                            className="hover:bg-blue-500 cursor-pointer w-[352px] py-2 px-4 border-2 rounded-md border-gray-300 bg-white text-base font-semibold">Continue With GitHub</button>
+                            className="hover:bg-blue-500 cursor-pointer lg:w-[352px]  w-[290px] py-2 px-4 border-2 rounded-md border-gray-300 bg-white text-base font-semibold">Continue With GitHub</button>
 
                         <span className="absolute top-3 left-16 text-xl"><FaGithub /></span>
                     </div>
