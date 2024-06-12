@@ -31,7 +31,7 @@ const CreateNote = () => {
 
         // send data to the server
 
-        const res = await fetch('http://localhost:5000/note', {
+        const res = await fetch('https://assignment-12-server-silk-phi.vercel.app/note', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -5,11 +5,13 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 const CheckOutForm = ({ BookedSession }) => {
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
     const [transactionId, setTransactionId] = useState('');
+    const navigate = useNavigate()
     const stripe = useStripe();
     const elements = useElements();
     const { user } = useContext(AuthContext);
@@ -65,6 +67,8 @@ const CheckOutForm = ({ BookedSession }) => {
             setTransactionId(paymentIntent.id);
             if (paymentIntent.status === 'succeeded') {
                 toast.success("Payment Successful");
+                navigate('/')
+                
 
                 // Save the booked session to the backend
                 const bookedSessionData = {

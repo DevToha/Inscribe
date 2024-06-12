@@ -14,7 +14,7 @@ const PersonalNote = () => {
     useEffect(() => {
         const fetchNotes = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/note?email=${user.email}`);
+                const response = await fetch(`https://assignment-12-server-silk-phi.vercel.app/note?email=${user.email}`);
                 const data = await response.json();
                 setNote(data);
             } catch (error) {
@@ -27,7 +27,7 @@ const PersonalNote = () => {
 
     const handleDelete = async (id) => {
         try {
-            await fetch(`http://localhost:5000/note/${id}`, {
+            await fetch(`https://assignment-12-server-silk-phi.vercel.app/note/${id}`, {
                 method: 'DELETE',
             });
             setNote(prevNotes => prevNotes.filter(note => note._id !== id));
@@ -40,7 +40,7 @@ const PersonalNote = () => {
 
     const handleUpdate = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5000/note/${id}`, {
+            const response = await fetch(`https://assignment-12-server-silk-phi.vercel.app/note/${id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

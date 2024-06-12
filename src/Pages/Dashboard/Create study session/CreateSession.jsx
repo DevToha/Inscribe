@@ -40,7 +40,7 @@ const CreateSession = () => {
         console.log(newSession);
 
         try {
-            const response = await fetch('http://localhost:5000/studySession', {
+            const response = await fetch('https://assignment-12-server-silk-phi.vercel.app/studySession', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

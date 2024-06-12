@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import {  useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import './session.css';
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { useContext } from "react";
@@ -39,7 +39,7 @@ const SessionDetail = () => {
     if (isLoadingSession) {
         return (
             <p>
-                <span className="loading loading-bars loading-lg"></span>
+                <span className="loading loading-dots loading-lg"></span>
             </p>
         );
     }

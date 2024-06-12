@@ -1,69 +1,41 @@
-/* Banner.css */
-
-.banner-image {
-    width: 100%;
-    height: auto;
-    max-width: 1525px;
-    max-height: 700px;
-}
-
-.autoplay-progress {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-}
-
-.autoplay-progress svg {
-    width: 48px;
-    height: 48px;
-}
-
-.autoplay-progress circle {
-    stroke: #000;
-    stroke-width: 4;
-    stroke-dasharray: 126;
-    stroke-dashoffset: calc(126 * var(--progress));
-    transform: rotate(-90deg);
-    transform-origin: center;
-}
-
 #app {
     height: 100%;
 }
 
-html,
-body {
+html, body {
     position: relative;
     height: 100%;
-}
-
-body {
-    background: #eee;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    color: #000;
     margin: 0;
     padding: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    background: #eee;
 }
 
 .swiper {
     width: 100%;
-    height: 100%;
+    height: 650px;
+    margin: 20px auto;
+    border-radius: 5px;
+    overflow: hidden; /* Hide overflow to maintain rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
 
 .swiper-slide {
     text-align: center;
     font-size: 18px;
     background: #fff;
-
-    /* Center slide text vertically */
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.slide-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .swiper-slide img {
@@ -71,34 +43,29 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease; /* Smooth transform on hover */
 }
 
-.autoplay-progress {
+.slide-text {
     position: absolute;
-    right: 16px;
-    bottom: 16px;
-    z-index: 10;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: var(--swiper-theme-color);
+    bottom: 20px; /* Position the text at the bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
 }
 
-.autoplay-progress svg {
-    --progress: 0;
-    position: absolute;
-    left: 0;
-    top: 0px;
-    z-index: 10;
-    width: 100%;
-    height: 100%;
-    stroke-width: 4px;
-    stroke: var(--swiper-theme-color);
-    fill: none;
-    stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
-    stroke-dasharray: 125.6;
-    transform: rotate(-90deg);
+/* Customize pagination bullets */
+.swiper-pagination-bullet {
+    background: #007bff; /* Change color of pagination bullets */
+    opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+    background: #0056b3; /* Active bullet color */
+    opacity: 1;
 }

@@ -12,8 +12,8 @@ const Payment = () => {
     console.log('BookedSession:', BookedSession); // Add this to verify the data
 
     return (
-        <div>
-            <h1 className="text-xl font-semibold text-center my-10">Please pay for book the session</h1>
+        <div className="p-10">
+            <h1 className="text-xl font-semibold text-center mt-32 mb-10">Please pay for book the session</h1>
             <div className="px-56">
                 <Elements stripe={stripePromise}>
                     <CheckOutForm BookedSession={BookedSession}></CheckOutForm> {/* Ensure prop name is correct */}

@@ -5,61 +5,57 @@ import bannerImage4 from './Banner image/open-book-with-fairytale-scene (2).jpg'
 import bannerImage5 from './Banner image/open-book-with-fairytale-scene (3).jpg';
 import bannerImage6 from './Banner image/open-book-with-fairytale-scene.jpg';
 import './Banner.css';
-import { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 
 const Banner = () => {
-    const progressCircle = useRef(null);
-    const progressContent = useRef(null);
-
-    const onAutoplayTimeLeft = (s, time, progress) => {
-        progressCircle.current.style.setProperty('--progress', 1 - progress);
-        progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
-    };
-
-    const images = [
-        { src: bannerImage1, alt: "Magic Fairytale Book Concept 1" },
-        { src: bannerImage2, alt: "Magic Fairytale Book Concept 2" },
-        { src: bannerImage3, alt: "Open Book with Fairytale Scene 1" },
-        { src: bannerImage4, alt: "Open Book with Fairytale Scene 2" },
-        { src: bannerImage5, alt: "Open Book with Fairytale Scene 3" },
-        { src: bannerImage6, alt: "Open Book with Fairytale Scene 4" }
-    ];
-
     return (
-        <>
-            <Swiper
-                spaceBetween={30}
-                centeredSlides={true}
-                autoplay={{
-                    delay: 2500,
-                    disableOnInteraction: false,
-                }}
-                pagination={{
-                    clickable: true,
-                }}
-                navigation={true}
-                modules={[Autoplay, Pagination, Navigation]}
-                onAutoplayTimeLeft={onAutoplayTimeLeft}
-                className="mySwiper"
-            >
-                {images.map((image, index) => (
-                    <SwiperSlide key={index}>
-                        <img src={image.src} alt={image.alt} className="banner-image" />
-                    </SwiperSlide>
-                ))}
-                <div className="autoplay-progress" slot="container-end">
-                    <svg viewBox="0 0 48 48" ref={progressCircle}>
-                        <circle cx="24" cy="24" r="20"></circle>
-                    </svg>
-                    <span ref={progressContent}></span>
+        <Swiper
+            spaceBetween={30}
+            pagination={{ clickable: true }}
+            modules={[Pagination]}
+            className="mySwiper"
+        >
+            <SwiperSlide>
+                <div className="slide-content">
+                    <img src={bannerImage2} alt="Banner 1" />
+                    <div className="slide-text mb-20">2960 Thousands Dream
+                        Jobs Available Now</div>
                 </div>
-            </Swiper>
-        </>
+            </SwiperSlide>
+            <SwiperSlide>
+                <div className="slide-content">
+                    <img src={bannerImage1} alt="Banner 2" />
+                    <div className="slide-text">Default Text 2</div>
+                </div>
+            </SwiperSlide>
+            <SwiperSlide>
+                <div className="slide-content">
+                    <img src={bannerImage3} alt="Banner 3" />
+                    <div className="slide-text">Default Text 3</div>
+                </div>
+            </SwiperSlide>
+            <SwiperSlide>
+                <div className="slide-content">
+                    <img src={bannerImage4} alt="Banner 4" />
+                    <div className="slide-text">Default Text 4</div>
+                </div>
+            </SwiperSlide>
+            <SwiperSlide>
+                <div className="slide-content">
+                    <img src={bannerImage5} alt="Banner 5" />
+                    <div className="slide-text">Default Text 5</div>
+                </div>
+            </SwiperSlide>
+            <SwiperSlide>
+                <div className="slide-content">
+                    <img src={bannerImage6} alt="Banner 6" />
+                    <div className="slide-text">Default Text 6</div>
+                </div>
+            </SwiperSlide>
+        </Swiper>
     );
 };
 

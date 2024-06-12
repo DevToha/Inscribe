@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { BookOpenIcon, Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
+import './nav.css'
 
 
 const Navbar = () => {
@@ -47,14 +48,14 @@ const Navbar = () => {
                     <div className="lg:ml-16">
                         {
                             user ?
-                                <button onClick={handleSignOut} className="btn btn-primary button40">LOG OUT</button>
+                                <button onClick={handleSignOut} className="button40">LOG OUT</button>
                                 :
                                 <div className="">
                                     <Link to="/login">
-                                        <button className="btn btn-primary button40 lg:mb-0 md:mb-0 mb-5">LOGIN</button>
+                                        <button className=" button40 lg:mb-0 md:mb-0 mb-5">LOGIN</button>
                                     </Link>
                                     <Link to="/register">
-                                        <button className=" btn btn-primary button40 ml-8">REGISTER</button>
+                                        <button className="button40 ml-8">REGISTER</button>
                                     </Link>
                                 </div>
                         }
