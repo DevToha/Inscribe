@@ -6,7 +6,9 @@ import Tutor from "../Tutor section/Tutor";
 const Home = () => {
     return (
         <div>
-            <Banner></Banner>
+            <div className="">
+                <Banner></Banner>
+            </div>
             <StudySession></StudySession>
             <Tutor></Tutor>
         </div>

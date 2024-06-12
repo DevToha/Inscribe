@@ -21,38 +21,43 @@ const Banner = () => {
             <SwiperSlide>
                 <div className="slide-content">
                     <img src={bannerImage2} alt="Banner 1" />
-                    <div className="slide-text mb-20">2960 Thousands Dream
-                        Jobs Available Now</div>
+                    <div className="slide-text mb-20">Your Gateway to Endless Learning Possibilities
+                    </div>
                 </div>
             </SwiperSlide>
             <SwiperSlide>
                 <div className="slide-content">
                     <img src={bannerImage1} alt="Banner 2" />
-                    <div className="slide-text">Default Text 2</div>
+                    <div className="slide-text mb-20">Ignite Your Learning Journey Today!
+                    </div>
                 </div>
             </SwiperSlide>
             <SwiperSlide>
                 <div className="slide-content">
                     <img src={bannerImage3} alt="Banner 3" />
-                    <div className="slide-text">Default Text 3</div>
+                    <div className="slide-text mb-20">Unlock Your Potential: Dive into Knowledge!
+                    </div>
                 </div>
             </SwiperSlide>
             <SwiperSlide>
                 <div className="slide-content">
                     <img src={bannerImage4} alt="Banner 4" />
-                    <div className="slide-text">Default Text 4</div>
+                    <div className="slide-text mb-20">Transform Your Future with Every Click
+                    </div>
                 </div>
             </SwiperSlide>
             <SwiperSlide>
                 <div className="slide-content">
                     <img src={bannerImage5} alt="Banner 5" />
-                    <div className="slide-text">Default Text 5</div>
+                    <div className="slide-text mb-20">Elevate Your Skills, Unleash Your Success!
+                    </div>
                 </div>
             </SwiperSlide>
             <SwiperSlide>
                 <div className="slide-content">
                     <img src={bannerImage6} alt="Banner 6" />
-                    <div className="slide-text">Default Text 6</div>
+                    <div className="slide-text mb-20">The Ultimate Destination for Lifelong Learners
+                    </div>
                 </div>
             </SwiperSlide>
         </Swiper>

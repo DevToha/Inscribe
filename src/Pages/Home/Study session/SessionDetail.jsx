@@ -109,9 +109,14 @@ const SessionDetail = () => {
             <div className="flex justify-evenly">
                 <div>
                     <div className="card25 mt-28 pt-10">
-                        <h1>{studySession.sessionTitle}</h1>
-                        <p className="my-5">{studySession.sessionDescription}</p>
+                        <h1>sessionTitle : {studySession.sessionTitle}</h1>
+                        <p className="my-5">sessionDescription : {studySession.sessionDescription}</p>
+                        <p>tutorName : {studySession.tutorName}</p>
                         <p>Registration Fee : {studySession.registrationFee}</p>
+                        <p>registrationEndDate : {studySession.registrationEndDate}</p>
+                        <p>classStartTime : {studySession.classStartTime}</p>
+                        <p>classEndDate : {studySession.classEndDate}</p>
+                        <p>sessionDuration : {studySession.sessionDuration}</p>
                         <p className="mt-5">Registration End Date : {studySession.registrationEndDate}</p>
 
                         <button onClick={handleBookNow} className="card15-btn btn my-5" disabled={isButtonDisabled}>
