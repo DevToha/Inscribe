@@ -15,6 +15,9 @@ const AdminAllSession = () => {
     });
 
     const [selectedSessionId, setSelectedSessionId] = useState(null);
+    const [rejectionReason, setRejectionReason] = useState("");
+    const [feedback, setFeedback] = useState("");
+    const [showRejectModal, setShowRejectModal] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const sessionsPerPage = 2;
     const modalRef = useRef(null);
@@ -71,11 +74,15 @@ const AdminAllSession = () => {
         }
     }
 
-    const handleReject = async (sessionId) => {
-        const updatedSession = { status: 'Rejected' };
+    const handleRejectSubmit = async (event) => {
+        event.preventDefault();
+        const updatedSession = { status: 'Rejected', rejectionReason, feedback };
         try {
-            const response = await axiosPublic.patch(`/studySession/${sessionId}`, updatedSession);
+            const response = await axiosPublic.patch(`/studySession/${selectedSessionId}`, updatedSession);
             if (response.data.modifiedCount > 0) {
+                setShowRejectModal(false);
+                setRejectionReason("");
+                setFeedback("");
                 refetch(); // Refresh the sessions list
                 Swal.fire({
                     title: "Session Rejected Successfully",
@@ -85,6 +92,17 @@ const AdminAllSession = () => {
         } catch (error) {
             console.error('Error rejecting session:', error);
         }
+    }
+
+    const openRejectModal = (sessionId) => {
+        setSelectedSessionId(sessionId);
+        setShowRejectModal(true);
+    }
+
+    const closeRejectModal = () => {
+        setShowRejectModal(false);
+        setRejectionReason("");
+        setFeedback("");
     }
 
     return (
@@ -112,14 +130,14 @@ const AdminAllSession = () => {
                                 <>
                                     <button className="btn btn-success my-5" onClick={() => {
                                         setSelectedSessionId(session._id);
-                                        modalRef.current.showModal(); // Open the modal
+                                        modalRef.current.showModal();
                                     }}>Approve</button>
-                                    <button className="btn btn-warning" onClick={() => handleReject(session._id)}>Reject</button>
+                                    <button className="btn btn-warning" onClick={() => openRejectModal(session._id)}>Reject</button>
                                 </>
                             ) : (
                                 <>
                                     <button className="btn btn-warning">Update</button>
-                                    <button className="btn btn-warning" onClick={() => handleReject(session._id)}>Delete</button>
+                                    <button className="btn btn-warning">Delete</button>
                                 </>
                             )}
 
@@ -144,16 +162,49 @@ const AdminAllSession = () => {
             <div className="flex justify-center mt-5">
                 {Array.from({ length: totalPages }, (_, index) => (
                     <button
-                        key={index + 1}
+                        key={index}
                         onClick={() => handlePageChange(index + 1)}
-                        className={`px-4 py-2 mx-1 border ${currentPage === index + 1 ? 'bg-gray-500 text-white' : 'bg-white text-gray-500'}`}
+                        className={`mx-1 px-3 py-1 rounded ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
                     >
                         {index + 1}
                     </button>
                 ))}
             </div>
+
+            {showRejectModal && (
+                <div className="modal modal-open">
+                    <div className="modal-box">
+                        <h3 className="font-bold text-lg">Reject Session</h3>
+                        <form onSubmit={handleRejectSubmit}>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Rejection Reason</label>
+                                <input
+                                    type="text"
+                                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    value={rejectionReason}
+                                    onChange={(e) => setRejectionReason(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Feedback</label>
+                                <textarea
+                                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    value={feedback}
+                                    onChange={(e) => setFeedback(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="modal-action">
+                                <button type="submit" className="btn btn-warning">Submit</button>
+                                <button type="button" className="btn btn-secondary" onClick={closeRejectModal}>Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
     );
-};
+}
 
 export default AdminAllSession;

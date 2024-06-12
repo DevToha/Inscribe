@@ -54,7 +54,11 @@ const ViewStudySession = () => {
                             <p><strong>Session Duration:</strong> {session.sessionDuration}</p>
                             <p><strong>Registration Fee:</strong> ${session.registrationFee}</p>
                             <p><strong>Status:</strong> {session.status}</p>
+                            {session.status === 'Rejected' && (
+                                <p><strong>Feedback:</strong> {session.feedback}</p>
+                            )}
                         </div>
+
                     ))
                 )}
             </div>

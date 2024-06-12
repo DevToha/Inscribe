@@ -18,9 +18,6 @@ const ViewAllNote = () => {
                         <div key={notes._id}>
                             <div className="card26 mb-10 ml-16 p-10">
                                 <p>Your Note : {notes.description}</p>
-                                <button className="btn btn-accent">Delete</button>
-                                <br />
-                                <button className="btn btn-accent">Update</button>
                             </div>
                         </div>
                     ))}
