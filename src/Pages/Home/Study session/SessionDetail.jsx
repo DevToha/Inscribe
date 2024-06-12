@@ -175,7 +175,8 @@ const SessionDetail = () => {
                                 style={{ maxWidth: 180 }}
                                 value={review.rating}
                                 readOnly
-                            />                        </div>
+                            />
+                        </div>
                     </div>
                 ))}
             </div>

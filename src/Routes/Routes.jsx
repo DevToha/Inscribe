@@ -6,7 +6,6 @@ import Home from "../Pages/Home/Home/Home";
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import Dashboard from "../Layout/Dashboard";
-import Cart from "../Pages/Dashboard/Cart/Cart";
 import CreateNote from "../Pages/Dashboard/Create Note/CreateNote";
 import SessionDetail from "../Pages/Home/Study session/SessionDetail";
 import PrivateRoute from "./PrivateRoute";
@@ -58,12 +57,9 @@ export const router = createBrowserRouter([
     },
     {
         path: "dashboard",
+        errorElement: <Error></Error>,
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
-            {
-                path: 'cart',
-                element: <Cart></Cart>
-            },
             {
                 path: 'createNote',
                 element: <CreateNote></CreateNote>

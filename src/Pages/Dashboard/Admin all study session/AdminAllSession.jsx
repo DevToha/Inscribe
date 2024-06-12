@@ -75,8 +75,8 @@ const AdminAllSession = () => {
             const response = await axiosPublic.patch(`/studySession/${selectedSessionId}`, newApproveSession);
             if (response.data.modifiedCount > 0) {
                 form.reset();
-                modalRef.current.close(); // Close the modal
-                refetch(); // Refresh the sessions list
+                modalRef.current.close();
+                refetch();
                 Swal.fire({
                     title: "You Successfully Approved The Session And Registration Fee",
                     icon: "success"
@@ -96,7 +96,7 @@ const AdminAllSession = () => {
                 setShowRejectModal(false);
                 setRejectionReason("");
                 setFeedback("");
-                refetch(); // Refresh the sessions list
+                refetch();
                 Swal.fire({
                     title: "Session Rejected Successfully",
                     icon: "success"
@@ -145,7 +145,7 @@ const AdminAllSession = () => {
             const response = await axiosPublic.patch(`/studySession/${selectedSessionId}`, updateData);
             if (response.data.modifiedCount > 0) {
                 closeUpdateModal();
-                refetch(); // Refresh the sessions list
+                refetch();
                 Swal.fire({
                     title: "Session Updated Successfully",
                     icon: "success"
@@ -160,7 +160,7 @@ const AdminAllSession = () => {
         try {
             const response = await axiosPublic.delete(`/studySession/${sessionId}`);
             if (response.data.deletedCount > 0) {
-                refetch(); // Refresh the sessions list
+                refetch();
                 Swal.fire({
                     title: "Session Deleted Successfully",
                     icon: "success"
